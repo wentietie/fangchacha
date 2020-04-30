@@ -1,0 +1,113 @@
+<view class="page">
+  <view class="page__bd">
+      <view class="weui-flex nav_panl" wx:if="{{data.status>0||type=='video'}}">
+          <view class="weui-flex__item" bindtap="toTap" data-url="edit">
+            <view class="nav_item {{type=='video'?'':'hover'}}">资料修改</view>
+          </view>
+          <view class="weui-flex__item" bindtap="toTap" data-url="video">
+            <view class="nav_item {{type=='video'?'hover':''}}">视频上传</view>
+          </view>
+      </view>
+
+<form reportSubmit bindsubmit="savepubinfo">
+    <view class="container">
+        <view class="main">
+        <view class="title">
+          {{type=='video'?'视频上传':'个人基本资料'}}
+        </view>
+            <view class="list">
+            <block wx:if="{{type!='video'}}">
+                <view class="item">
+                    <view class="name">公司名称</view>
+                    <view class="selectitem">
+                        <input name="cname" disabled="{{data.status==1}}" placeholder="请输入公司简称+（类别）例如房查查（平台）" type="text" value="{{data.platform}}"/>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">姓 名</view>
+                    <view class="selectitem">
+                        <input name="name" placeholder="请输入姓名+(职位)" type="text" value="{{data.name}}"/>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name"> 手 机</view>
+                    <view class="selectitem">
+                        <input name="tel" placeholder="请输入手机号码" type="text" value="{{data.tel}}"/>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">微信号</view>
+                    <view class="selectitem">
+                        <input name="wechat" placeholder="请输入微信号，留空则使用手机号" type="text" value="{{data.wechat}}"/>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name" style="width:auto;">推荐人手机号</view>
+                    <view class="selectitem" style="width:73%;">
+                        <input name="ptel" placeholder="请输入手机号码" type="text" value="{{data.ptel}}"  disabled="{{data.status==1}}"/>
+                    </view>
+                </view>
+                <view class="item" wx:if="{{data.type=='sale'}}">
+                    <view class="name"> 佣 金</view>
+                    <view class="selectitem">
+                        <input name="money" placeholder="请输入佣金" type="text" value="{{data.money}}"/>
+                    </view>
+                </view>
+              <view class="title">类型</view>
+              <view class="checklist">
+                  <radio-group name='plat'>
+                          <radio class="checkitem" wx:for="{{f.plat}}" value="{{item}}" checked="{{index==0||data.houseplat==item}}"  bindtap="setPlat" data-value="{{item}}" disabled="{{data.status==1}}">
+                      {{item}}                
+                      </radio>
+                  </radio-group>
+              </view>
+                <view class="item">
+                    <view class="name">入驻楼盘</view>
+                    <view class="selectitem" bindtap="{{data.status==1?'':'gethouse'}}">
+                        <input  placeholder="请选择入驻楼盘" value="{{selectHouse.housename||data.housename||''}}" disabled="{{data.status==1}}"/>
+                        <input name="house" hidden="true" value="{{selectHouse.id||data.houseid||''}}" />
+                    </view>
+                </view>
+              </block>  
+                <block  wx:if="{{upimgs[type].length>0}}">
+                <view class="item">
+                  <view class="imglist">
+                      <view class="imgitem"  wx:for="{{upimgs[type]}}">
+                          <image bindtap="bindUpload" data-idx="{{index}}" src="{{item.p?item.p:'../../resource/images/pub.png'}}" />
+                          <view bindtap="bindDelete" class="sum" data-idx="{{index}}" hidden="{{!item.p}}">
+                              <text>×</text>
+                          </view>
+                          
+                <view class="title" style='width:auto;font-size:.7rem;text-align:center;'>{{uptitle[type][index]}}</view> 
+                      </view>
+                  <view class="imgitem" style="border:none;" wx:if="{{upimgs[type].length%3==2}}"/>
+                  </view>
+                </view>
+                <view class="item" wx:if="{{updesc[type]}}">
+                  <view class="imglist">
+                  <view class="title" style='width:auto;font-size:.7rem;text-align:center;'>{{updesc[type]}}</view>
+                  </view>
+                  </view>
+                </block>                         
+                                        
+                <checkbox-group name='imgs' wx:if="{{upimgs[type].length>0}}" hidden="1" >
+                   <checkbox value="{{item.s}}" checked="true" wx:for="{{upimgs[type]}}"/>
+                </checkbox-group>
+            </view>
+        </view>
+    </view>
+    <view class="weixinmao-float">
+        <view class="weixinmao-foot">
+            <button class="footer" formType="submit" style="background:{{intro.maincolor}}" wx:if="{{data.status>-1}}">提交</button>
+            <button class="footer" style="background:#dedede" wx:else>入驻申请已被拒绝</button>
+        </view>
+    </view>
+</form>
+  </view>
+</view>
+<include src='../index/css1'/>
+<view class="u-tap-btn">
+    <button class="u-go-home" bindtap="toUrl" data-url="tab:../index/index">
+        <text class="iconfont fa fa-home"/> 首页
+    </button>
+</view>

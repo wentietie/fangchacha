@@ -1,0 +1,18 @@
+<view class="weixinmao-msg-userinfo"  hidden="{{isuser||intro.isgetuser==0||!intro.isgetuser}}">
+    <view class="weixinmao-content-userinfo">
+        <view class="userinfo-title">
+          需要您的授权
+        </view>
+        <view class="userinfo-content">
+            <view>为了提供更好的服务</view>
+            <view>请稍后在提示框上点击“允许”。</view>
+        </view>
+        <view class="userinfo-img">
+            <image src="../../resource/images/getinfo.png"></image>
+        </view>
+        <view class="userinfo-button">
+            <button style="margin-right: 20rpx;" bindtap="bindCancell">取消</button>
+            <button bindgetuserinfo="bindGetUserInfo" openType="getUserInfo">授权</button>
+        </view>
+    </view>
+</view>

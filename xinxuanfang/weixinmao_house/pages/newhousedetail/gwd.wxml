@@ -1,0 +1,121 @@
+<view class="page">
+   <view class="page_bd" wx:if="{{_page!='video'}}">   
+      <view class="plat-list">
+          <view class="body weui-flex">
+             <view class="left">
+               <image class="avatar" src="{{item.avatar||'../../resource/images/user_img.png'}}" />
+             </view>
+             <view class="right">
+               <view class="name o-hide">{{item.name||item.platform}}</view>
+               <view class="o-hide" bindtap="toUrl" data-url="copy:{{item.copy||item.wechat||item.tel}}">
+               微信：{{item.wechat||item.tel}} <text class="fa fa-copy" />
+               </view>
+               <view class="o-hide">公司：{{item.platform}}</view>
+               <view class="o-hide">楼盘：{{item.housename}}</view>
+               <block wx:if="{{item.type=='sale'&&item.money}}">
+               <view wx:if="{{isyjshow||(user.uid>0&&item.uid==user.uid)}}">
+               佣金：<text style="color:red">{{item.money}}</text>
+               </view>
+               <view class="o-hide" catchtap="toAgent" wx:else>
+               佣金：<text style="color:red">{{intro._yjmsg}}</text>
+               </view>
+               </block>
+               <view class="btn-group">
+                  <button class="btn weui-flex" catchtap="toUrl" data-url="tel:{{item.tel}}"  wx:if="{{isyjshow||(user.uid>0&&item.uid==user.uid)}}">
+                   <text class="fa fa-phone large"/>
+                   <text class="text">拨打电话</text>
+                  </button>
+                  <button class="btn weui-flex" catchtap="toAgent" wx:else>
+                   <text class="fa fa-phone large"/>
+                   <text class="text" style="color:red">{{intro._telmsg}}</text>
+                  </button>
+                  <button class="btn weui-flex" bindtap="toUrl" data-url="gwd?id={{item.id}}&_page=video" wx:if="{{item.status>0&&item.videos}}">
+                   <text class="fa fa-film"/>
+                   <text class="text">楼盘讲解</text>
+                  </button>
+               </view>
+             </view>
+          </view>
+          <view class="bottom weui-flex">
+            <view class="weui-flex__item">
+               <text class="num">{{item.click>9999?'9999+':item.click}}</text> 浏览量
+            </view>
+            <view class="weui-flex__item">
+               <text class="num">{{item.hy>9999?'9999+':item.hy}}</text> 活跃度
+            </view>
+            <view class="weui-flex__item">
+              <text class="num">{{item.zan>9999?'9999+':item.zan}}</text> 点赞数
+             </view>
+            <view class="weui-flex__item" wx:if="{{item.czanstr!==undefined}}">
+              <text class="num">{{item.czan>9999?'9999+':item.czan}}</text> 差评数
+            </view>
+          </view>
+      </view>
+      <view class="weui-flex p-btns" wx:if="{{item.status>0}}">
+        <button class="weui-flex__item p-btn" bindtap="bindzan" data-data="{{item}}" data-type="zan">
+           <view class="fa fa-{{item._iszan?'thumbs-up':'thumbs-o-up'}}" />
+           <view>为我点赞</view>
+        </button>
+        <button class="weui-flex__item p-btn" open-type="share">
+           <view class="fa fa-share-square-o" />
+           <view>转发</view>
+        </button>
+        <button class="weui-flex__item p-btn" bindtap="toUrl" data-url="showImg:{{item.code}}" wx:if="{{item.code}}">
+           <view class="fa fa-qrcode" />
+           <view>保存二维码</view>
+        </button>
+        <view class="weui-flex__item" wx:else /> 
+      </view>
+   </view>
+   
+   <view class="page_bd" wx:if="{{_page=='video'}}">               
+            <view class="listitem" wx:if="{{item.videos}}">
+                <video  wx:for="{{item.videos}}" wx:if="{{vidx==idx||(vidx<0&&idx==0)}}" wx:for-item="it"  wx:for-index="idx" src="{{it.src}}" title="{{it.title}}" style="width:750rpx;" autoplay="{{vidx>=0}}"/>
+            </view>
+            <view class="imgs-box">
+                    <view class="imgs-item" wx:for="{{item.videos}}" wx:for-item="it"  wx:for-index="idx" bindtap="showvideo" data-idx="{{idx}}" wx:if="{{it.src}}" style="position: relative;">
+                            <video src="{{it.src}}" autoplay="{{false}}"/>
+                            <cover-view style="width:100%;height:100%;position:absolute;left:0;top:0;"/>
+                            <view class="short-title">{{it.title}}</view>
+                    </view>
+                    <view class="imgs-item" wx:if="{{item.videos.length%2>0}}">
+                            <image src="" />
+                    </view>
+                    <view class="weui-loadmore" wx:if="{{!item.videos||item.videos.length<=0}}">
+                      <view class="weui-loadmore weui-loadmore_line">
+                          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+                      </view>
+                  </view> 
+            </view>
+   </view>
+</view>
+
+ <view  style="padding-bottom:140rpx; margin-top:40rpx;"></view>
+<view class="u-tap-btn">
+    <button class="u-go-home" bindtap="toUrl" data-url="tab:../index/index">
+        <text class="iconfont fa fa-home"/> 首页
+    </button>
+</view>
+<view class="btn-jion weui-flex" wx:if="{{user.uid>0&&item.uid==user.uid}}">
+<button class="weui-flex__item" type="primary" bindtap="toUrl" data-url="index?id={{item.houseid}}">
+     楼盘详情
+     </button>  
+     <button class="weui-flex__item" bindtap="toUrl" data-url="../jion/edit?id={{item.id}}">
+     资料修改
+     </button>
+     <button class="weui-flex__item" type="primary" bindtap="toUrl" data-url="../jion/edit?type=video&id={{item.id}}" wx:if="{{item.status==1}}">
+     视频上传
+     </button>
+</view>
+<view class="btn-jion weui-flex" wx:else>
+     <button class="weui-flex__item" type="primary" bindtap="toUrl" data-url="index?id={{item.houseid}}">
+     楼盘详情
+     </button>  
+     <button class="weui-flex__item" bindtap="toUrl" data-url="tel:{{item.tel}}"  wx:if="{{isyjshow||(user.uid>0&&item.uid==user.uid)}}">
+     电话咨询
+     </button>
+     <button class="weui-flex__item" bindtap="toAgent" wx:else>
+     <text class="fa fa-phone large"/>
+     <text > {{intro._telmsg}}</text>
+     </button>
+</view>

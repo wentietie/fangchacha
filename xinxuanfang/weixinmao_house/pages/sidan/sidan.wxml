@@ -1,0 +1,28 @@
+
+<view class="weixinmao-msg" hidden="{{sq.status==1}}">
+    <view class="weixinmao-content">
+        <view class="title">
+            <view></view>
+            <view>消息提醒</view>
+            <view></view>
+        </view>
+        <block wx:if="{{!sq}}">
+          <view class="list ismaster">
+            {{sqmsg.msg||"对不起，您还不能查看私单人员名单！"}}    
+          </view>  
+          <view bindtap="toMessage" class="masterbtn">{{sqmsg.btn||"前往申请"}}</view>
+        </block>
+        <view class="list ismaster" wx:if="{{sq.status==0}}" style="margin-top: 100rpx;">
+           {{sqmsg.msg||"正在申请中，请等待工作人员审核！"}}      
+        </view>
+        <block wx:if="{{sq.status<0}}">
+          <view class="list ismaster">
+            {{sqmsg.msg||"您的申请已被拒绝！"}}
+          </view>  
+          <view bindtap="toMessage" class="masterbtn">{{sqmsg.btn||"重新申请"}}</view>
+        </block>
+    </view>
+</view>
+
+<include wx:if="{{!sidanlist}}" src="../index/css1.wxml" />
+<include wx:if="{{sidanlist}}" src="../index/css.wxml" />

@@ -1,0 +1,147 @@
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<import src="../index/templates/tjlist.wxml"></import>
+    <view class="container">
+        <view class="swiper-container">
+            <swiper autoplay="{{autoplay}}"  circular="{{circular}}" class="swiper_box" duration="{{duration}}" interval="{{interval}}" style="height:{{imgheights[current]}}rpx;">
+                <swiper-item wx:for="{{data.thumb_url}}"  bindtap="showimg" data-list="{{data.thumb_url}}" data-idx="{{item}}">
+                    <image bindload="imageLoad" class="slide-image" data-id="" src="{{item}}" style="height:{{imgheights[current]}}rpx;width:{{imgwidth}}rpx;"></image>
+                </swiper-item>
+            </swiper>
+            <view class="dots">
+                <view class="dot{{index==swiperCurrent?' active':''}}" wx:for="{{data.thumb_url}}" wx:key="index"></view>
+            </view>
+        </view>
+        <view class="main">
+            <view class="title">
+                <view>{{data.housename}}</view>
+                <view class="price" wx:if="{{data.houseprice}}">
+                    <view wx:if="{{data.channel=='new'}}">均价{{data.houseprice}}元/㎡</view>
+                    <view wx:if="{{data.channel=='dazong'}}">总价{{data.zongjia}}元</view>
+                </view>
+            </view>
+            <view class="address" wx:if="{{data.basics_1}}">
+                <view wx:for="{{data.basics_1}}" style="{{item.style}}">
+                   <block wx:if="{{item.key=='houseaddress'}}">
+                     <view bindtap="goMap">
+                        <text class="fa fa-map-marker fa-lg"></text>
+                        {{item.title}}:{{item.data}}
+                     </view>
+                   </block>
+                   <block wx:else>
+                     {{item.title}}:{{item.data}}
+                   </block>
+                </view>
+            </view>
+            <view class="special">
+                <text wx:for="{{data.speciallist}}" wx:if="{{item}}">{{item}}</text>
+            </view>
+        </view>        
+        <view class="contentlist">
+           <view class="weui-flex btn-icon">
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="index?id={{data.id}}&_page=thumb_1">
+                 <image src="../../resource/icon/05.png"/>
+                 <view>户型图</view>
+              </view>
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="index?id={{data.id}}&_page=detail">
+                 <image src="../../resource/icon/03.png"/>
+                 <view>楼盘详情</view>
+              </view>
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="index?id={{data.id}}&_page=imgs">
+                 <image src="../../resource/icon/01.png"/>
+                 <view>楼盘图片</view>
+              </view>
+              <view class="weui-flex__item btn-icon-item">
+              </view>
+           </view>
+        </view>        
+        <view class="contentlist">            
+            <view class="news">
+              <view class="newstitle">           
+                  <view></view>
+                  <view>基本参数</view>
+              </view>
+            </view> 
+            <view class="listitem">
+                <view class="items" wx:for="{{data.basics_2}}"  style="{{item.style}}" wx:if="{{item.data&&item.data!='/'}}">{{item.title}}:<text>{{item.data}}</text></view>
+            </view>
+        </view>
+        <view class="contentlist line" wx:if="{{data.plat.sale.length>0}}">
+            <view class="title">
+                <view></view>
+                <view>销售平台</view>
+            </view>
+        </view>
+        <view class="plat" wx:for="{{data.plat.sale}}">
+          <view class="agentinfo">
+              <view class="left">
+                  <view class="headpic" >
+                      <image src="{{item.avatar?item.avatar:(intro.avatar?intro.avatar:data.thumb)}}"></image>
+                  </view>
+                  <view class="username">
+                      <view>{{item.platform}} </view>
+                      <view style="color:red" wx:if="{{isyjshow}}">佣金:{{item.money}}</view>
+                      <view style="color:red" bindtap="toMessage" wx:else>佣金:{{intro._yjmsg}}</view>
+                      <view>{{item.name}}{{item.tel}}</view>
+                  </view>
+              </view>
+              <view class="right"  style="margin-top: 20rpx;">
+                  <view bindtap="doCall" class="contact" data-tel="{{item.tel}}">
+                      <view >
+                          <text class="fa fa-phone fa-lg"></text>
+                      </view>
+                      <view>拨打电话</view>
+                  </view>
+              </view>
+          </view>
+          <view class="special" style="display:block;padding-bottom:20rpx;">
+                  <text bindtap="bindzan" hidden="{{!intro.plat_zan.ok_lable}}" data-idx="{{index}}" data-type="zan" data-data="{{item}}">{{intro.plat_zan.ok_lable}}{{item.zan}}</text>
+                  <text bindtap="bindzan"  hidden="{{!intro.plat_zan.no_lable}}" data-idx="{{index}}" data-type="czan" data-data="{{item}}">{{intro.plat_zan.no_lable}}{{item.czan}}</text>
+          </view>
+        </view>
+        <view class="contentlist" wx:if="{{salelist.list.length>0}}">
+           <template is="platlist" data="{{d:salelist}}"></template>
+        </view>
+        <view class="contentlist" wx:if="{{gwlist.list.length>0}}">
+           <template is="platlist" data="{{d:gwlist}}"></template>
+        </view>
+        <view class="contentlist" wx:if="{{tjlist.list.length>0}}">
+           <template is="tjlist" data="{{d:tjlist}}"></template>
+        </view>
+        <view class="contentlist">            
+            <view class="title">
+                <view></view>
+                <view bindtap="bindshowtype" class="{{showtype!='content'?'':'active'}}" wx:if="{{data.content}}" data-type="content">详情</view>
+                <view bindtap="bindshowtype" class="{{showtype!='basics_2'?'':'active'}}" wx:if="{{data.basics_2}}" data-type="basics_2">参数</view>
+                <view bindtap="bindshowtype" class="{{showtype!='video'?'':'active'}}" wx:if="{{data.video}}" data-type="video">视频</view>
+                <view bindtap="bindshowtype" class="{{showtype!=('thumbs_'+index)?'':'active'}}" wx:for="{{data.thumbs}}" data-type="thumbs_{{index}}">{{item.title}}</view>
+            </view>
+            <view class="listitem" wx:if="{{data.video}}" hidden="{{showtype!='video'}}">
+                <video src="{{data.video}}" style="width:750rpx;"></video>
+            </view>            
+            <view class="type-container" wx:for="{{data.thumbs}}" style="panding-left:5rpx;" hidden="{{showtype!=('thumbs_'+index)}}">
+                <scroll-view class="type-navbar" scrollX="true" style="width: 100%">
+                    <view class="type-box" wx:for="{{item.list}}" wx:for-item="it"  wx:for-index="idx">
+                        <view bindtap="showimg" class="type-navbar-item " data-list="{{item.list}}" data-idx="{{it}}">
+                            <image src="{{it}}"></image>
+                        </view>
+                    </view>
+                </scroll-view>
+                <view  style="padding-bottom:60rpx; margin-top:20rpx;"></view>
+            </view>
+            <view class="intro"  wx:if="{{data.content}}" hidden="{{showtype!='content'}}">
+                <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+            </view>
+            <view  style="padding-bottom:60rpx; margin-top:20rpx;"></view>
+        </view>
+    </view>
+    <include src="../sidan/commentlist"/>
+<view class="weixinmao-float">
+    <view class="weixinmao-foot">
+        <view class="footer" hidden="1"></view>
+        <button open-type="contact" class="footer" show-message-card="true" send-message-path="{{_url}}" style="background-color: #f0f0f0;margin-top: 0;width:60%;border-radius:unset;display: block;line-height: 100rpx;font-size: .85rem;">
+            <text class="iconfont fa fa-comments-o"> </text> 联系客服
+        </button>
+        <view class="footer" hidden="1"></view>
+        <view bindtap="goMessage" class="footer" data-url="gw?id={{data.id}}">置业顾问</view>
+    </view>
+</view>

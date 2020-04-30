@@ -1,0 +1,68 @@
+<form reportSubmit bindsubmit="savepubinfo">
+    <view class="container">
+        <view class="main">
+            <view class="title">
+          个人基本信息
+        </view>
+            <view class="list">
+                <view class="item">
+                    <view class="name">公司名称</view>
+                    <view class="selectitem">
+                        <input name="cname" placeholder="请输入公司名称" type="text" value="{{noteinfo.companyname?noteinfo.companyname:''}}"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">姓 名</view>
+                    <view class="selectitem">
+                        <input name="name" placeholder="请输入姓名+(职位)" type="text" value="{{noteinfo.name?noteinfo.name:''}}"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name"> 手 机</view>
+                    <view class="selectitem">
+                        <input name="tel" placeholder="请输入手机号码" type="text" value="{{noteinfo.tel?noteinfo.tel:''}}"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name"> 地 址</view>
+                    <view class="selectitem">
+                        <input name="address" placeholder="请输入地址" type="text" value="{{noteinfo.address?noteinfo.address:''}}"></input>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="main">
+            <view class="title" style="font-size:.7rem;">
+          {{msg[0]}}
+        </view>
+            <view class="list">
+                <view class="item">
+                    <view class="selectitem" style="width:100%;">
+                        <textarea name="content" placeholder="{{msg[1]}}" value="{{noteinfo.content}}"></textarea>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="weixinmao-float">
+        <view class="weixinmao-foot">
+            <button class="footer" formType="submit" style="background:{{intro.maincolor}}">提交申请</button>
+        </view>
+    </view>
+</form>
+<view class="weixinmao-msg_show" hidden="{{isuser}}">
+    <view class="weixinmao-content_show">
+        <view class="title">
+            <view></view>
+            <view>消息提醒</view>
+            <view></view>
+        </view>
+        <view class="list" style="height:300rpx;">
+            <view class="heaerpic">
+                <image src="{{companyinfo.logo}}"></image>
+                <view>{{companyinfo.name}}</view>
+            </view>
+        </view>
+        <button bindgetuserinfo="bindGetUserInfo" class="masterbtn" openType="getUserInfo">立即授权</button>
+    </view>
+</view>

@@ -1,0 +1,93 @@
+<view class="container">
+  <view class="header" style="background:{{intro.maincolor}}">
+    <view hidden="{{!isuser}}">
+      <view class="pic">
+        <image src="{{userinfo.avatar}}"></image>
+        <view>{{userinfo.nickname}}</view>
+      </view>
+      <view bindtap="toPaymoney" style="display:none;" class="money">账户余额:￥{{score}}</view>
+      <view hidden="{{!user.ism||!user.endtime}}" class="money">到期时间:{{user.endtime}}</view>
+    </view>
+    <view hidden="{{isuser}}">
+      <view class="pic">
+        <image src="{{userinfo.wxInfo.avatarUrl}}"></image>
+        <button bindgetuserinfo="bindGetUserInfo" openType="getUserInfo" style="background:{{intro.maincolor}};color:#FFF;font-size:.7rem;">点击登录</button>
+      </view>
+    </view>
+  </view>
+  <view class="navlist" hidden="{{!isuser}}">
+    <block wx:for="{{menu}}">
+      <view class="item" wx:if="{{item.bind=='contact'}}">
+        <button open-type="contact">
+          <image src="{{item.icon}}" />
+          <text class="tips" wx:if="{{item.tips}}" />
+          <view>{{item.title}}</view>
+        </button>
+      </view>
+      <view wx:else bindtap="{{item.bind}}" class="item" data-url="{{item.url}}">
+        <button>
+          <image src="{{item.icon}}" />
+          <text class="tips" wx:if="{{item.tips}}">未读</text>
+          <view>{{item.title}}</view>
+        </button>
+      </view>
+    </block>
+    <view class="item" wx:if="{{4-menu.length%4<4}}" />
+    <view class="item" wx:if="{{4-menu.length%4<3}}" />
+    <view class="item" wx:if="{{4-menu.length%4<2}}" />
+  </view>
+</view>
+<view class="weixinmao-msg" hidden="{{true}}">
+  <view class="weixinmao-content">
+    <view class="title">
+      <view></view>
+      <view>绑定手机号</view>
+      <view bindtap="closemsg">关闭</view>
+    </view>
+    <form bindsubmit="saveuserinfo">
+      <view class="content">
+        <view class="item">
+          <input class="inputlist" name="name" placeholder="请输入您的姓名" type="text" value="{{user.name}}"></input>
+        </view>
+        <view class="item">
+          <input class="inputlist" name="tel" placeholder="请输入您的手机号" type="text" value="{{user.tel}}"></input>
+        </view>
+        <view class="item tops">
+          <button class="bindtel" formType="submit">立即绑定</button>
+        </view>
+      </view>
+    </form>
+  </view>
+</view>
+
+<view class="weixinmao-msg" hidden="{{showmsg}}">
+  <view class="weixinmao-content">
+    <view class="title" style="background:{{intro.maincolor}}">
+      <view></view>
+      <view>发布</view>
+      <view bindtap="closemsg">关闭</view>
+    </view>
+    <view class="content">
+      <view bindtap="toUrl" class="item" data-url="../newhouselist/pub">
+        <view> 新房发布</view>
+      </view>
+      <view bindtap="toUrl" class="item" data-url="../newhouselist/pub?pubtype=dazong">
+        <view>大宗物业发布</view>
+      </view>
+      <view bindtap="toUrl" class="item" data-url="../letpub/index">
+        <view>租售发布</view>
+      </view>
+      <view bindtap="toUrl" class="item" data-url="../cuiyong/pub">
+        <view>追佣发布</view>
+      </view>
+      <view bindtap="toUrl" class="item" data-url="../sidan/pub">
+        <view>私单人员发布</view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="u-tap-btn">
+  <button class="u-go-home" openType="contact">
+    <text class="iconfont fa fa-comments-o" />客服
+  </button>
+</view>

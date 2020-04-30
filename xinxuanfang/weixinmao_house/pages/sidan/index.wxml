@@ -1,0 +1,97 @@
+<view class="fixed-box">
+<view class="search">
+    <navigator hoverClass="none" url="../city/index?id=7">
+        <image mode="aspectFit" src="../../resource/images/coord.png"></image>
+        <text>{{city}}</text>
+    </navigator>
+    <view  class="search_box">
+        <icon size="14" type="search"></icon>
+        <input confirmType="search" bindconfirm="bindSearch" name="keyword" value="{{search.keyword}}" placeholder="请输入相关信息" placeholderClass="search_plac" type="text" />
+    </view>
+</view>
+<view class="list_sort">
+    <view bindtap="selectCars" class="sort_list {{isCars?'':'select'}}">
+        <text>{{title==''?'区域':title}}</text>
+        <image src="{{isCars?'../../resource/images/buttom.png':'../../resource/images/top-red.png'}}"></image>
+    </view>
+    <view bindtap="selectType" class="sort_list {{isType?'':'select'}}">
+        <text>{{typetitle==''?'时间':typetitle}}</text>
+        <image src="{{isType?'../../resource/images/buttom.png':'../../resource/images/top-red.png'}}"></image>
+    </view>
+</view>
+</view>
+<view class="select_cars" hidden="{{isCars}}" style="widths:190rpx;">
+    <scroll-view class="bigWrap" scrollTop="{{scrollTop}}" scrollY="true" style="height:680rpx; left: 0; top:0; bottom: 0; right: 0;">
+        <view bindtap="selectcarsitem" class="select_cars_list {{carid==0?'colorred':''}}" data-title="全部" id="0">
+            <text>全部</text>
+            <image src="../../resource/images/dui.png" wx:if="{{carid==0}}"></image>
+        </view>
+        <block wx:for="{{arealist}}" wx:key="index">
+            <view bindtap="selectcarsitem" class="select_cars_list colorred" data-title="{{item.name}}" id="{{item.id}}" wx:if="{{item.id==carid}}">
+                <text>{{item.name}}</text>
+                <image src="../../resource/images/dui.png"></image>
+            </view>
+            <view bindtap="selectcarsitem" class="select_cars_list" data-title="{{item.name}}" id="{{item.id}}" wx:else>
+                <text>{{item.name}}</text>
+            </view>
+        </block>
+    </scroll-view>
+</view>
+<view bindtap="selectCars" class="small_overlay" hidden="{{isCars}}"></view>
+<scroll-view class="select_sort" hidden="{{isType}}" scrollY="true" style="max-height:680rpx;height:{{85*(housetypelist.length+1)}}rpx;left:0;bottom:0;right:0;">
+    <view bindtap="selecttypeitem" class="select_cars_list {{typeid==0?'colorred':''}}" data-title="" id="0">
+        <text>不限</text>
+        <image src="../../resource/images/dui.png" wx:if="{{typeid==0}}"></image>
+    </view>
+    <block wx:for="{{timelist}}">
+        <view bindtap="selecttypeitem" class="select_cars_list colorred" data-title="{{index+1}}" id="{{index+1}}" wx:if="{{item==typeid}}">
+            <text>{{item}}</text>
+            <image src="../../resource/images/dui.png"></image>
+        </view>
+        <view bindtap="selecttypeitem" class="select_cars_list" data-title="{{index+1}}" id="{{index+1}}" wx:else>
+            <text>{{item}}</text>
+        </view>
+    </block>
+</scroll-view>
+<view bindtap="selectType" class="small_overlay" hidden="{{isType}}"></view>
+<view class="fixed-top" style="height:15rpx;"></view>
+<block wx:if="{{list}}">
+    <view class="newslist" wx:for="{{list}}" wx:key="index">
+        <view bindtap="toNagivate" class="title" data-id="detail?id={{item.id}}" class="title">
+            <view class="address">
+                <view>{{item.s_name}}</view>
+                <view>{{item.s_cname}}</view>
+                <view>发布公司：{{item.cname}}</view>      
+            </view>
+            <view class="price">
+                <view>
+                    <text wx:if="{{item.areaname}}">{{item.areaname}}</text>
+                    <text wx:if="{{item.housetypename}}">{{item.housetypename}}</text>
+                </view>
+                <view class="money" style="margin-right:5rpx">
+                  {{item.c_times}}
+                </view>
+            </view>
+        </view>
+    </view>
+</block>
+<block wx:if="{{list.length<1||!list}}">
+  <view class="loadmore">
+      <text>暂无数据</text>
+  </view>
+</block>
+<view class="loadmore">
+    <text>{{loadMore}}</text>
+</view>
+<view class="u-tap-btn">
+    <button class="u-go-home" open-type="share">
+        <text class="iconfont fa fa-share-alt"/> 分享
+    </button>
+    <button class="u-go-home" bindtap="toUrl" data-url="tab:../index/index">
+        <text class="iconfont fa fa-home"/> 首页
+    </button>
+    <button class="u-go-home" openType="contact">
+        <text class="iconfont fa fa-comments-o"/> 客服
+    </button>
+</view>
+<include src="sidan.wxml" />

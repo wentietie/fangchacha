@@ -1,0 +1,29 @@
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<import src="../index/templates/tjlist.wxml"></import>
+    <view class="container">        
+               
+      <include src="title"/>     
+        <view class="contentlist" wx:if="{{data.basics_2.length>0}}">            
+            <view class="news">
+              <view class="newstitle">           
+                  <view></view>
+                  <view>基本参数</view>
+              </view>
+            </view> 
+            <view class="listitem">
+                <view class="items" wx:for="{{data.basics_2}}"  style="{{item.style}}" wx:if="{{item.data&&item.data!='/'}}">{{item.title}}:<text>{{item.data}}</text></view>
+            </view>
+        </view>
+        <view class="contentlist">           
+            <view class="news">
+              <view class="newstitle">           
+                  <view></view>
+                  <view>楼盘简介</view>
+              </view>
+            </view> 
+            <view class="intro" >
+                <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+            </view>
+            <view  style="padding-bottom:60rpx; margin-top:20rpx;"></view>
+        </view>
+    </view>

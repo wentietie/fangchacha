@@ -1,0 +1,13 @@
+<template name="ubtn">
+<view class="u-tap-btn">
+    <button class="u-go-home" open-type="share" wx:if="{{!share}}">
+        <text class="iconfont fa fa-share-alt"/> 分享
+    </button>
+    <button class="u-go-home" bindtap="toUrl" data-url="tab:../index/index" wx:if="{{!home}}">
+        <text class="iconfont fa fa-home"/> 首页
+    </button>
+    <button class="u-go-home" openType="contact"  wx:if="{{!kf}}">
+        <text class="iconfont fa fa-comments-o"/> 客服
+    </button>
+</view>
+</template>

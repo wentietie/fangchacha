@@ -1,0 +1,54 @@
+<view class="container">
+    <view class="header" style=" background:linear-gradient(to right,#ff553c,#f57562);">
+        <view>
+            <view class="pic">
+                <image src="../../resource/images/male1.png"></image>
+                <view class="userinfo">
+                    <view>{{agentinfo.name}}</view>
+                    <view>当前套餐: {{agentrole.title}}</view>
+                    <view>到期时间: {{agentinfo.endtime}}</view>
+                </view>
+            </view>
+        </view>
+        <view bindtap="toAgentrole" class="opencard" style=" background:linear-gradient(to right,#EEB4B4,#EEA9B8);">
+            <image src="../../resource/images/shenji.png"></image> 升级套餐</view>
+    </view>
+    <view class="service">
+        <view bindtap="toMyteam" class="servicelist">
+            <view class="logo">
+                <image src="../../resource/images/yuyue.png"></image>
+            </view>
+            <view class="name">
+                <view>预约客户</view>
+                <view></view>
+            </view>
+        </view>
+        <view bindtap="toJoinuser" class="servicelist" style="background: #ff553c;">
+            <view class="logo">
+                <image src="../../resource/images/fygl.png"></image>
+            </view>
+            <view class="name">
+                <view>房源管理</view>
+                <view></view>
+            </view>
+        </view>
+        <view bindtap="toPublet" class="servicelist" style="background:#FFD700;">
+            <view class="logo">
+                <image src="../../resource/images/lethouse.png"></image>
+            </view>
+            <view class="name">
+                <view>发布出租房</view>
+                <view>剩余:{{agentinfo.lethousenum}}</view>
+            </view>
+        </view>
+        <view bindtap="toPubold" class="servicelist" style="background: #DA70D6;">
+            <view class="logo">
+                <image src="../../resource/images/oldhouse.png"></image>
+            </view>
+            <view class="name">
+                <view>发布二手房</view>
+                <view>剩余:{{agentinfo.oldhousenum}}</view>
+            </view>
+        </view>
+    </view>
+</view>

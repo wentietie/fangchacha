@@ -1,0 +1,26 @@
+    <view class="container" style="min-height:100%;background-color: #fff;box-sizing: border-box">        
+        <view class="contentlist" style="margin-top:0;">            
+            <view class="title">
+                <view></view>
+                <view bindtap="bindshowtype" class="{{showtype!='video'?'':'active'}}" wx:if="{{data.video}}" data-type="video">视频</view>
+                <view bindtap="bindshowtype" class="{{showtype==item.key||(showtype=='thumbs_0'&&index==0)?'active':''}}" wx:for="{{data.thumbs}}" data-type="{{item.key}}">{{item.title}}</view>
+            </view>
+            <view class="listitem" wx:if="{{data.video}}" hidden="{{showtype!='video'}}">
+                <video src="{{data.video}}" style="width:750rpx;"></video>
+            </view>            
+            <view class="imgs-box" wx:for="{{data.thumbs}}" wx:if="{{showtype==item.key||(showtype=='thumbs_0'&&index==0)}}">
+                    <view class="imgs-item" wx:for="{{item.list}}" wx:for-item="it"  wx:for-index="idx" bindtap="showimg" data-list="{{item.list}}" data-idx="{{it}}">
+                            <image src="{{it}}" />
+                            <view class="fa fa-search-plus" />
+                    </view>
+                    <view class="imgs-item" wx:if="{{item.list.length%2>0}}">
+                            <image src="" />
+                    </view>
+                    <view class="weui-loadmore" wx:if="{{item.list.length<=0}}">
+                      <view class="weui-loadmore weui-loadmore_line">
+                          <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+                      </view>
+                  </view> 
+            </view>
+        </view>
+    </view>

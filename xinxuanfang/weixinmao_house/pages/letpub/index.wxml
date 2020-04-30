@@ -1,0 +1,127 @@
+<form reportSubmit bindsubmit="savepubinfo">
+    <view class="container">
+        <view class="main">
+            <view class="title">
+          基本信息
+           </view>
+            <view class="list">
+                <view class="item">
+                    <view class="name">区 域</view>
+                    <picker  class="selectitem" bindchange="bindPickerChange" data-data="{{arealist}}" data-item="farea" range="{{arealist}}" range-key="name">
+                      <view style="width:560rpx;">{{farea.name?farea.name:'请选择区域'}}</view>
+                      <input type="text" name="houseareaid" hidden="true" value="{{farea.id}}" />
+                      <image src="../../resource/images/arrow-right.png" style="float: right;margin-top: -35rpx;" />
+                    </picker>
+                </view>
+                <view class="item">
+                    <view class="name">楼盘名称</view>
+                    <view class="selectitem">
+                      <input name="title" placeholder="请输入楼盘名称" type="text"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">姓名</view>
+                    <view class="selectitem">                    
+                      <input name="name" placeholder="请输入姓名" type="text"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">联系方式</view>
+                    <view class="selectitem">
+                      <input name="tel" placeholder="请输入联系方式" type="text"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">佣金</view>
+                    <view class="selectitem">
+                      <input name="fxmoney" placeholder="请输入佣金" type="text"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">面积</view>
+                    <view class="selectitem">
+                      <input name="area" placeholder="请输入面积" type="text"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">均价</view>
+                    <view class="selectitem">
+                      <input name="money" placeholder="请输入均价" type="text"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">地址</view>
+                    <view class="selectitem">
+                      <input name="address" placeholder="请输入地址,留空则使用位置选择的地址" type="text"></input>
+                    </view>
+                </view>
+                <view class="item" bindtap="bindMap">
+                    <view class="name">位置</view>
+                    <view class="selectitem">
+                      <input  placeholder="选择位置" disabled="true" value="{{map.address}}" type="text" />
+                      <input  placeholder="选择位置" hidden="true"  name="_address" value="{{map.address}}" type="text" />
+                      <input name="lng" hidden="1" value="{{map.longitude}}"  placeholder="选择" type="text" />
+                      <input name="lat" hidden="1" value="{{map.latitude}}"  placeholder="选择" type="text" />
+                      <image src="../../resource/images/arrow-right.png"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="title">类型</view>
+            <view class="checklist">
+                <radio-group name='letway'>
+                    <view class="checkitem" wx:for="{{form.letway}}">
+                        <radio value="{{item}}" />{{item}}</view>                  
+                </radio-group>
+            </view>
+            <view class="title">房源来源</view>
+            <view class="checklist">
+                <radio-group name='source'>
+                    <view class="checkitem" wx:for="{{form.type}}">
+                        <radio value="{{item}}" />{{item}}</view>                  
+                </radio-group>
+            </view>
+            <view class="title">楼盘类型</view>
+            <view class="checklist">
+                <checkbox-group name='housetype'>
+                    <view class="checkitem" wx:for="{{form.housetype}}">
+                        <checkbox value="{{item}}" />{{item}}</view>                  
+                </checkbox-group>
+            </view>
+            <view class="title">项目介绍</view>
+            <view class="checklist">
+                <textarea placeholder="请介绍项目基本信息,面积 单价 佣金 房号 等等,图片稍后会有工作人员线下与你联系" name="content" style="height:300rpx"/>
+            </view>
+        </view>
+        <view class="main" style="padding-bottom:120rpx; margin-top:20rpx;">
+            <view class="list" hidden="1">
+                <view class="item">
+                    <view class="selectitem" style="font-weight:600;font-size:.7rem;">
+                        <checkbox-group name="doagree">
+                            <checkbox checked="true" value="1"></checkbox>我已阅读并同意<text bindtap="goHousexy" style="color:blue;">《房屋委托协议》</text>
+                        </checkbox-group>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="weixinmao-float">
+        <view class="weixinmao-foot">
+            <button class="footer" formType="submit" style="background:{{intro.maincolor}}">立即发布</button>
+        </view>
+    </view>
+</form>
+<view class="weixinmao-msg" hidden="{{ismaster}}">
+    <view class="weixinmao-content">
+        <view class="title">
+            <view></view>
+            <view>{{intro._pub.title}}</view>
+            <view></view>
+        </view>
+        <view class="list ismaster">
+          {{intro._pub.msg}}
+        </view>
+        <view bindtap="toMessage" class="masterbtn">{{intro._pub.btn}}</view>
+    </view>
+</view>
+
+<include src="../index/css1.wxml" />

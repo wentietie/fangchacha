@@ -1,0 +1,25 @@
+<view class="main">
+            <view class="title">
+                <view>{{data.housename}}</view>
+                <view class="price" wx:if="{{data.houseprice}}">
+                    <view wx:if="{{data.channel=='new'}}">均价{{data.houseprice}}元/㎡</view>
+                    <view wx:if="{{data.channel=='dazong'}}">总价{{data.zongjia}}元</view>
+                </view>
+            </view>
+            <view class="address" wx:if="{{data.basics_1}}">
+                <view wx:for="{{data.basics_1}}" style="{{item.style}}">
+                   <block wx:if="{{item.key=='houseaddress'}}">
+                     <view bindtap="goMap">
+                        <text class="fa fa-map-marker fa-lg"></text>
+                        {{item.title}}:{{item.data}}
+                     </view>
+                   </block>
+                   <block wx:else>
+                     {{item.title}}:{{item.data}}
+                   </block>
+                </view>
+            </view>
+            <view class="special">
+                <text wx:for="{{data.speciallist}}" wx:if="{{item}}">{{item}}</text>
+            </view>
+        </view>  

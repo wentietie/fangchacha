@@ -1,0 +1,117 @@
+<view class="page">
+  <view class="page__bd">
+      <view class="weui-flex nav_panl">
+          <view class="weui-flex__item" bindtap="toTap" data-url="gw">
+            <view class="nav_item {{type=='sale'?'':'hover'}}">置业顾问</view>
+          </view>
+          <view class="weui-flex__item" bindtap="toTap" data-url="sale">
+            <view class="nav_item {{type=='sale'?'hover':''}}">渠道驻场</view>
+          </view>
+      </view>
+
+<form reportSubmit bindsubmit="savepubinfo">
+    <view class="container">
+        <view class="main">
+            <view class="" style="font-size: .7em;padding:0rpx 0 40rpx;">          
+              <checkbox-group name="check" >
+                <checkbox value="1"/>
+                <text bindtap="toUrl" data-url="../about/index?type=jion_{{type=='sale'?'sale':'gw'}}" style="border-bottom: 1px blue solid;color:blue;display:inline-block">
+                请仔细阅读{{intro.name}}{{ptitle}}入驻规则，勾选视为同意
+                </text>
+              </checkbox-group>
+            <view class="title" style="font-size:.8rem;text-align:center;" wx:if="{{jionmsg.title}}">
+              {{jionmsg.title}}
+            </view>
+            </view>
+            <view class="title">
+          个人基本信息
+        </view>
+            <view class="list">
+                <view class="item">
+                    <view class="name">公司名称</view>
+                    <view class="selectitem">
+                        <input name="cname" placeholder="请输入公司简称+（类别）例如房查查（平台）" type="text" value="{{noteinfo.companyname?noteinfo.companyname:''}}"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">姓 名</view>
+                    <view class="selectitem">
+                        <input name="name" placeholder="请输入姓名+(职位)" type="text"/>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name"> 手 机</view>
+                    <view class="selectitem">
+                        <input name="tel" placeholder="请输入手机号码" type="text"/>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">微信号</view>
+                    <view class="selectitem">
+                        <input name="wechat" placeholder="请输入微信号，留空则使用手机号" type="text"/>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name" style="width:auto;">推荐人手机号</view>
+                    <view class="selectitem" style="width:73%;">
+                        <input name="ptel" placeholder="请输入手机号码" type="text"/>
+                    </view>
+                </view>
+                <view class="item" wx:if="{{type=='sale'}}">
+                    <view class="name"> 佣 金</view>
+                    <view class="selectitem">
+                        <input name="money" placeholder="请输入佣金" type="text"/>
+                    </view>
+                </view>
+              <view class="title">类型</view>
+              <view class="checklist">
+                  <radio-group name='plat'>
+                          <radio class="checkitem" wx:for="{{f.plat}}" value="{{item}}" checked="{{index==0}}"  bindtap="setPlat" data-value="{{item}}" >
+                      {{item}}                
+                      </radio>
+                  </radio-group>
+              </view>
+                <view class="item">
+                    <view class="name">入驻楼盘</view>
+                    <view class="selectitem" bindtap="gethouse">
+                        <input  placeholder="请选择入驻楼盘"  value="{{selectHouse.housename||''}}" />
+                        <input name="house" hidden="true" value="{{selectHouse.id||''}}" />
+                    </view>
+                </view>
+                
+                <block  wx:if="{{upimgs.length>0}}">
+                <view class="item">
+                  <view class="imglist">
+                      <view class="imgitem"  wx:for="{{upimgs}}" wx:if="{{index<2||type=='gw'}}">
+                          <image bindtap="bindUpload" data-idx="{{index}}" src="{{item.p?item.p:'../../resource/images/pub.png'}}" />
+                          <view bindtap="bindDelete" class="sum" data-idx="{{index}}" hidden="{{!item.p}}">
+                              <text>×</text>
+                          </view>
+                          
+                <view class="title" style='width:auto;font-size:.7rem;text-align:center;'>{{uptitle[index]}}</view> 
+                      </view>
+                      <view class="imgitem" style="border:none" wx:if="{{upimgs.length%3<2||type=='gw'}}" />
+                  </view>
+                </view>
+                </block>                             
+                <view class="title" style='font-size:.7rem;text-align:center;' wx:if="{{jionmsg.msg}}">{{jionmsg.msg}}</view>                 
+                <checkbox-group name='imgs' wx:if="{{upimgs.length>0}}" hidden="1" >
+                   <checkbox value="{{item.s}}" checked="true" wx:for="{{upimgs}}"/>
+                </checkbox-group>
+            </view>
+        </view>
+    </view>
+    <view class="weixinmao-float">
+        <view class="weixinmao-foot">
+            <button class="footer" formType="submit" style="background:{{intro.maincolor}}">提交申请</button>
+        </view>
+    </view>
+</form>
+  </view>
+</view>
+<include src='../index/css1'/>
+<view class="u-tap-btn" style="bottom:400rpx;">
+    <button class="u-go-home" bindtap="toUrl" data-url="tab:../index/index">
+        <text class="iconfont fa fa-home"/> 首页
+    </button>
+</view>

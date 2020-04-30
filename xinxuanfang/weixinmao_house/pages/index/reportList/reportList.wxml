@@ -1,0 +1,8 @@
+<!--weixinmao_house/pages/index/reportList/reportList.wxml-->
+<view class="holePage">
+<!-- data-id="{{item.id}}" -->
+  <view class="eachReport" wx:for="{{repostList}}" wx:key="index"  catchtap="getDetail">
+    <text>报备人</text>
+    <text>报备时间</text>
+  </view>
+</view>

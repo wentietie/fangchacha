@@ -1,0 +1,12 @@
+<view class='holePage'>
+  <view class="priceList">
+    <block wx:for="{{priceList}}" wx:key='index'>
+    <view class="eachPrice {{curIndex == index?'selPrice' : ''}}">
+      ￥12
+    </view>
+  </block>
+  </view>
+  <view class="payBtn">
+    立即支付
+  </view>
+</view>

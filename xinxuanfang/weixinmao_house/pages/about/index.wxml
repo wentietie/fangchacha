@@ -1,0 +1,13 @@
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<view class="container">        
+  <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+</view>
+
+<view class="u-tap-btn">
+    <button class="u-go-home" open-type="share">
+        <text class="iconfont fa fa-share-alt"/> 分享
+    </button>
+    <button  class="u-go-home" bindtap="toUrl" data-url="tab:../index/index">
+       <text class="iconfont fa fa-home" /> 首页
+    </button>
+</view>

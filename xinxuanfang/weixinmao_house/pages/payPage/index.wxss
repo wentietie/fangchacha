@@ -1,0 +1,32 @@
+/* weixinmao_house/pages/payPage/index.wxss */
+.priceList{
+  width: 720rpx;
+  overflow-x: auto;
+  white-space: nowrap;
+  margin-left: 30rpx;
+  margin-top: 30rpx;
+}
+.eachPrice{
+  width: 150rpx;
+  padding: 30rpx 20rpx;
+  margin-right: 30rpx;
+  border: 1rpx solid #dddddd;
+  display: inline-block;
+  border-radius: 10rpx;
+}
+.selPrice{
+  border: 1rpx solid #DEC479;
+  background-color: #FCF2D9;
+}
+.payBtn{
+  width: 690rpx;
+  margin: 0 auto;
+  margin-top: 50rpx;
+  border-radius: 40rpx;
+  line-height: 80rpx;
+  font-size: 30rpx;
+  text-align: center;
+  background-color: #F5CE65;
+  color: #ffffff;
+  font-weight: 600;
+}

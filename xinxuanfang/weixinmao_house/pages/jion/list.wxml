@@ -1,0 +1,26 @@
+<view class="page">
+    <view class="page__bd"> 
+        <view class="weui-flex nav_panl" wx:if="{{tab.length>0}}">
+          <view class="weui-flex__item" bindtap="toTap" data-value="{{item.data}}" wx:for="{{tab}}">
+            <view class="nav_item {{ext_data==('&fromtype='+item.data)?'hover':''}}">
+              {{item.title}}
+            </view>
+          </view>
+      </view>       
+        <view class="weui-panel" wx:for="{{list}}">
+            <view class="weui-panel__hd">{{item.title}}</view>
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_small-appmsg">
+                    <view class="weui-cells weui-cells_in-small-appmsg">
+                        <view wx:for="{{item.list}}" wx:for-item="row" class="weui-cell weui-cell_access" hover-class="weui-cell_active" bindtap="toUrl" data-url="{{row.url}}{{ext_data}}">
+                            <view class="weui-cell__bd weui-cell_primary">
+                                <view>{{row.title}}</view>
+                            </view>
+                            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                        </view>                        
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

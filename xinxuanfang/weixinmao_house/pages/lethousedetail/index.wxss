@@ -1,0 +1,32 @@
+@import '../newhousedetail/index';
+
+.container .listitem .special {
+    width: 720rpx;
+    display: flex;
+    flex-direction: row;
+    padding-left: 30rpx;
+    padding-bottom: 10rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    flex-wrap: wrap;
+}
+
+.container .listitem .special text {
+    padding: 5rpx 10rpx;
+    border-radius: 5rpx;
+    font-size: .6rem;
+    background: red;
+    margin-right: 10rpx;
+    margin-top: 5rpx;
+    color: #FFF;
+}
+
+.container .listitem .special text:nth-child(2n) {
+    background: #ecf2fe;
+    color: #90a1cf;
+}
+
+.container .listitem .special text:nth-child(2n-1) {
+    background: #e3f9e4;
+    color: #7dac82;
+}

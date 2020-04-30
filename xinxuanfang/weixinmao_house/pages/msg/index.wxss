@@ -1,0 +1,28 @@
+page{
+  background-color: #EDEDED;
+}
+.f-7{
+  font-size:.7rem; 
+}
+
+.weui-media-box {
+  padding: 10px;
+}
+.nclamp{
+  -webkit-line-clamp:unset;
+}
+.nread .weui-media-box__title,.nread .weui-media-box__desc{
+  font-weight: bolder !important;
+}
+.nread .weui-media-box__title .tips{
+  color: #3274e5;
+}
+.contentlist .title .tips{
+  background-color: red;
+  border-radius: 50%;
+  width: 10rpx;
+  height: 10rpx;
+  display: inline-block;
+  float: right;
+  margin-top: 20rpx;
+}

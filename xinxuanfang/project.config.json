@@ -1,0 +1,165 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.9.1",
+	"appid": "wx2b1bba14e99c5b28",
+	"projectname": "%E6%96%B0%E9%80%89%E6%88%BF",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "出租",
+					"pathName": "weixinmao_house/pages/letpub/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "支付",
+					"pathName": "weixinmao_house/pages/pay/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "sidan",
+					"pathName": "weixinmao_house/pages/sidan/pub",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "发布",
+					"pathName": "weixinmao_house/pages/letpub/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 4,
+					"name": "新盘详情",
+					"pathName": "weixinmao_house/pages/newhousedetail/index",
+					"query": "id=1294",
+					"scene": null
+				},
+				{
+					"id": 5,
+					"name": "租售详情",
+					"pathName": "weixinmao_house/pages/lethousedetail/index",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员中心",
+					"pathName": "weixinmao_house/pages/user/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "messge",
+					"pathName": "weixinmao_house/pages/message/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 8,
+					"name": "msg",
+					"pathName": "weixinmao_house/pages/msg/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "web",
+					"pathName": "lib/pages/web",
+					"query": "url= https://mp.weixin.qq.com/",
+					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "weixinmao_house/pages/newhousedetail/trans",
+					"pathName": "weixinmao_house/pages/newhousedetail/trans",
+					"query": "id= 1028",
+					"scene": null
+				},
+				{
+					"id": 11,
+					"name": "map",
+					"pathName": "weixinmao_house/pages/newhouselist/map",
+					"query": "isnear=1&fromtype=成都向上",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "入驻",
+					"pathName": "weixinmao_house/pages/jion/edit",
+					"query": "type=video&id=6",
+					"scene": null
+				},
+				{
+					"id": 13,
+					"name": "weixinmao_house/pages/newhousedetail/gw",
+					"pathName": "weixinmao_house/pages/newhousedetail/gw",
+					"query": "type=sale",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "weixinmao_house/pages/newhousedetail/trans",
+					"pathName": "weixinmao_house/pages/newhousedetail/trans",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

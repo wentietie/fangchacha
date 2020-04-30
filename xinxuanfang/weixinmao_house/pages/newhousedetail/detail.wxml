@@ -1,0 +1,75 @@
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<import src="../index/templates/tjlist.wxml"></import>
+    <view class="container">
+        <view class="swiper-container">
+            <swiper autoplay="{{autoplay}}"  circular="{{circular}}" class="swiper_box" duration="{{duration}}" interval="{{interval}}" style="height:{{imgheights[current]}}rpx;" indicator-dots="true">
+                <swiper-item wx:for="{{data.thumb_url}}"  bindtap="showimg" data-list="{{data.thumb_url}}" data-idx="{{item}}">
+                    <image bindload="imageLoad" class="slide-image" data-id="" src="{{item}}" style="height:{{imgheights[current]}}rpx;width:{{imgwidth}}rpx;"></image>
+                </swiper-item>
+            </swiper>
+        </view>  
+            <view class='btn-video' bindtap="toUrl" data-url="gwd?_page=video&id={{data._video}}" wx:if="{{data._video}}"><view>视频<text>\n</text>讲解</view></view>      
+      <include src="title"/>        
+        <view class="contentlist">
+           <view class="weui-flex btn-icon">
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="../newhouselist/map?formtype={{data.type||''}}">
+                 <image src="../../resource/icon/02.png"/>
+                 <view>地图找房</view>
+              </view>
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="index?id={{data.id}}&_page=commentlist">
+                 <image src="../../resource/icon/04.png"/>
+                 <view>楼盘问问</view>
+              </view>
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="index?id={{data.id}}&_page=detail">
+                 <image src="../../resource/icon/03.png"/>
+                 <view>楼盘说辞</view>
+              </view>
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="index?id={{data.id}}&_page=imgs">
+                 <image src="../../resource/icon/01.png"/>
+                 <view>楼盘图片</view>
+              </view>
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="../newhouselist/map?isnear=1&fromtype={{data.fromtype}}&latlng={{data.lat}},{{data.lng}}" wx:if="{{data.channel=='new'}}">
+                 <image src="../../resource/icon/02.png"/>
+                 <view>联动楼盘</view>
+              </view>
+           </view>
+        </view>
+        <view class="contentlist" wx:if="{{salelist.list.length>0}}">
+           <template is="platlist" data="{{d:salelist,showyj:true,isyjshow:isyjshow,intro:intro}}"></template>
+        </view>
+        <view class="contentlist" wx:if="{{gwlist.list.length>0}}">
+           <template is="platlist" data="{{d:gwlist,isyjshow:isyjshow}}"></template>
+        </view>
+    </view>
+    <include src="../sidan/commentlist"/>    
+    <view class="container">    
+        <view class="contentlist" wx:if="{{tjlist.list.length>0}}">
+           <template is="tjlist" data="{{d:tjlist}}"></template>
+        </view>
+    </view>
+<view class="btn-jion weui-flex" style="position:unset;">
+<view class="weui-flex btns" style="width:550rpx;box-sizing: border-box;">
+<button class="weui-flex__item" style="background:#fff;color:#fff">11</button>
+</view>
+</view>
+<view class="btn-jion weui-flex">
+  <view class="weui-flex" style="width:200rpx;margin:30rpx 0;font-size:.7rem;">
+    <view class="weui-flex__item" bindtap="toUrl" data-url="index?id={{data.id}}&_page=commentlist">
+       <view class="fa fa-commenting-o" style="transform: rotateY(180deg);font-size:1rem;"/>
+       <view>{{commenttotal>9999?'9999+':(commenttotal||0)}}</view>
+     </view>
+    <button class="weui-flex__item not-btn" openType="contact" show-message-card="true" send-message-path="{{_url}}" >
+       <view class="fa fa-comments-o" style="transform: rotateY(180deg);font-size:1rem;"/>
+       <view>客服</view>
+     </button>
+  </view>
+  <view class="weui-flex btns" style="width:550rpx;box-sizing: border-box;">
+  
+     <button class="weui-flex__item" type="primary" bindtap="toUrl" data-url="gw?type=sale&id={{data.id}}">
+     联系渠道驻场
+     </button>  
+     <button class="weui-flex__item" bindtap="toUrl" data-url="gw?type=gw&id={{data.id}}">
+     联系置业顾问
+     </button>
+  </view>
+</view>

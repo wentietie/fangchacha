@@ -1,0 +1,40 @@
+<view class="container _{{_page}}">
+        <view class="contentlist">
+            <view class="news" id="comment">
+            <view class="newstitle">
+                <view></view>
+                <view>{{commenttitle||'全部评论'}}</view>
+                <view wx:if="{{_page=='index'}}" bindtap="toUrl" data-url="{{_page=='index'||_page=='detail'?_page+'?id='+(item.id||id)+'&_page=commentlist':''}}" style="position:absolute;right:20rpx;">更多 >></view></view>
+            </view>
+            <view class="commentlist" wx:for="{{commentlist}}" wx:key="index" bindtap="toUrl" data-url="cdetail?id={{item.id}}">
+                <view class="commentpic">
+                    <image src="{{item.avatarUrl}}"></image>
+                </view>
+                <view class="commenttitle">
+                    <view class="addresstop">{{item.wechaname}}</view>
+                    <view class="time">{{item.createtime}}</view>
+                    <view class="content">{{item.content}}</view>
+                    <view class="reply-list" wx:if="{{item.replylist.length>0}}">
+                      <view class="reply-item" catchtap="{{it.key=='more'||!it.platid?'':'toUrl'}}" data-url="{{it.platid?'../newhousedetail/gwd?id='+it.platid:''}}" wx:for="{{item.replylist}}" wx:for-item="it"  wx:for-index="idx">
+                      <block wx:if="{{it.key=='more'}}">
+                            <text class="rtitle" style="font-size:.7rem;">查看全部({{it.total}})条回复</text>
+                      </block>
+                      <block wx:else>
+                            <text class="rtitle">{{it.platname}}{{it.wechaname}}</text> 
+                            <text class="btn" wx:if="{{it.platid}}">点击联系</text>
+                            <block wx:if="{{it.replyname}}">
+                            <text style="margin:0 10rpx;">回复</text>
+                            <text class="rtitle">{{it.replyname}}</text>
+                            </block>
+                            :{{it.content}}
+                      </block>
+                      </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    
+            <view class="pubcomment">
+                <button bindtap="toUrl" data-url="comment?id={{item.id||id}}">发表评论...</button>
+            </view>

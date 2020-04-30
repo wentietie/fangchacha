@@ -1,0 +1,5 @@
+
+    <view class="container">        
+      <include src="title"/> 
+    </view>
+    <include src="../sidan/commentlist"/>

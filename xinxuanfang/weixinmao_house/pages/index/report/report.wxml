@@ -1,0 +1,59 @@
+<form bindsubmit="subForm">
+  <view class="container">
+    <view class="main">
+      <view class="title">
+        经济人报备信息
+      </view>
+      <view class="list">
+        <view class="item">
+          <view class="name">姓 名</view>
+          <view class="selectitem">
+            <input name="agent_phone" placeholder="请输入经纪人姓名" type="text" />
+          </view>
+        </view>
+        <view class="item">
+          <view class="name"> 手 机</view>
+          <view class="selectitem">
+            <input name="agent_name" placeholder="请输入手机号码" type="text" />
+          </view>
+        </view>
+        <view class="item">
+          <view class="name">报备楼盘</view>
+          <view class="selectitem">
+            <!-- <input name="wechat" placeholder="请输入报备楼盘" type="text" /> -->
+            <picker name='house_id' bindchange="chooseDepar" value="{{deparIndex}}" range="{{depList}}" range-key="housename">
+              <view class="picker">
+                {{depList[deparIndex].housename}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="item">
+          <view class="name" style="width:auto;">预计到访时间</view>
+          <view class="selectitem">
+            <input name="reserve_time" placeholder="请输入带看时间" type="text" />
+          </view>
+        </view>
+        <view class="item">
+          <view class="name" style="width:auto;">客户姓名</view>
+          <view class="selectitem">
+            <input name="uname" placeholder="请输入客户姓名" type="text" />
+          </view>
+        </view>
+        <view class="item">
+          <view class="name" style="width:auto;">客户联系方式</view>
+          <view class="selectitem">
+            <input name="uphone" placeholder="请输入客户联系方式" type="text" />
+          </view>
+        </view>
+        <view class="item">
+          <view class="name" style="width:auto;">客户备注</view>
+          <view class="selectitem">
+            <input name="remarks" placeholder="请输入客户备注" type="text" />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button form-type="submit" class='subBtn'>立即提交</button>
+</form>

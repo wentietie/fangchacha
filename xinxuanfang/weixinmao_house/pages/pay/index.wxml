@@ -1,0 +1,38 @@
+<form reportSubmit bindsubmit="savepubinfo" hidden="{{!isuser}}">
+    <view class="container">
+        <view class="main">
+            <view class="list">
+                <view class="item">
+                    <view class="name">订单名称</view>
+                    <view class="selectitem">
+                        {{freetitle||'会员开通'}}
+                    </view>
+                </view>
+                <view class="item" wx:for="{{intro.hy}}" bindtap="bindpay" data-idx="{{index}}">
+                    <view class="name">{{item.title}}-{{item.day}}天</view>
+                    <view class="selectitem">
+                         ￥{{item.m}}元  <radio checked="{{selectPay==index}}" style="margin-left:5rpx;"/>
+                         <input name="day" wx:if="{{selectPay==index}}" value="{{item.day}}" hidden="1"/>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="weixinmao-float">
+            <view class="weixinmao-foot">
+                <button class="footer" formType="submit">{{showtip}}</button>
+            </view>
+            <view class="weixinmao-foot" style="margin-top: 5px;">
+                 <navigator class="footer" style="width:100%" open-type="reLaunch" url="../index/index">
+                 <button class="footer" style="background:#808080">取消</button>
+                 </navigator>
+            </view>
+        </view>
+        
+        <view class="weixinmao-float" wx:if="{{freemsg.length}}" style="text-align:center">
+            <view class="title" style="font-size:.8rem;width:80%;margin:0 auto 100rpx;color:red;">
+          <view wx:for="{{freemsg}}">{{item}}</view>
+            </view>
+        </view>
+    </view>
+</form>
+<include src="../index/css1.wxml" />

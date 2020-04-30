@@ -1,0 +1,4 @@
+/* weixinmao_house/pages/jion/list.wxss */
+page{
+  background-color: #EDEDED;
+}

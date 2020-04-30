@@ -1,0 +1,122 @@
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<view class="container">
+    <view class="swiper-container">
+        <swiper autoplay="{{autoplay}}" circular="{{circular}}" class="swiper_box" duration="{{duration}}" interval="{{interval}}" style="height:{{imgheights[current]}}rpx;">
+            <swiper-item wx:for="{{data.thumb_url}}" bindtap="showimg" data-list="{{data.thumb_url}}" data-idx="{{item}}">
+                <image bindload="imageLoad" class="slide-image" data-id="" src="{{item}}" style="height:{{imgheights[current]}}rpx;width:{{imgwidth}}rpx;"></image>
+            </swiper-item>
+        </swiper>
+        <view class="dots">
+            <view class="dot{{index==swiperCurrent?' active':''}}" wx:for="{{data.thumb_url}}" wx:key="index"></view>
+        </view>
+    </view>
+    <view class="main">
+        <view class="title">
+            <view>
+                <text>{{data.source?'【'+data.source+'】' :''}} </text>{{data.title}}</view>
+            <view class="price" wx:if="{{data.money}}">
+                <view>{{data.money}}元{{data.letway!=2?'/月':''}}</view>
+            </view>
+        </view>
+            <view class="address" wx:if="{{data.basics_1}}">
+                <view wx:for="{{data.basics_1}}"  style="{{item.style}}">
+                 <block wx:if="{{item.key=='address'}}">
+                     <view bindtap="goMap">
+                        <text class="fa fa-map-marker fa-lg"></text>
+                        {{item.title}}:{{item.data}}
+                     </view>
+                   </block>
+                   <block wx:else>
+                     {{item.title}}:{{item.data}}
+                   </block>
+                </view>
+            </view>
+        <view class="special">
+            <text wx:for="{{data.houselabel}}" wx:if="{{item}}">{{item}}</text>
+        </view>
+    </view>
+    <block wx:if="{{data.tel}}">
+        <view class="agentinfo">
+            <view class="left">
+                <view class="headpic">
+                    <image src="{{data.avatar?data.avatar:(intro.avatar?intro.avatar:data.thumb)}}"></image>
+                </view>
+                <view class="username">
+                    <view>{{data.name}} </view>
+                    <view style="color:red" wx:if="{{isyjshow}}">佣金:{{data.fxmoney}}</view>
+                    <view style="color:red" bindtap="toMessage" wx:else>佣金:{{intro._yjmsg}}</view>
+                    <view>{{data.tel}}</view>
+                </view>
+            </view>
+            <view class="right" style="margin-top: 20rpx;">
+                <view bindtap="doCall" class="contact" data-tel="{{data.tel}}">
+                    <view>
+                        <text class="fa fa-phone fa-lg"></text>
+                    </view>
+                    <view>拨打电话</view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view class="contentlist line" wx:if="{{data.speciallist.length}}">
+        <view class="title">
+            <view></view>
+            <view>房源配套</view>
+        </view>
+        <view class="listitem">
+            <view class="special">
+                <text wx:for="{{data.speciallist}}">{{item}}</text>
+            </view>
+        </view>
+    </view>
+    <view class="contentlist">
+                    
+            <view class="title">
+                <view></view>
+                <view bindtap="bindshowtype" class="{{showtype!='content'?'':'active'}}" wx:if="{{data.content}}" data-type="content">详情</view>
+                <view bindtap="bindshowtype" class="{{showtype!='basics_2'?'':'active'}}" wx:if="{{data.basics_2}}" data-type="basics_2">参数</view>
+                <view bindtap="bindshowtype" class="{{showtype!='video'?'':'active'}}" wx:if="{{data.video}}" data-type="video">视频</view>
+                <view bindtap="bindshowtype" class="{{showtype!=('thumbs_'+index)?'':'active'}}" wx:for="{{data.thumbs}}" data-type="thumbs_{{index}}">{{item.title}}</view>
+            </view>
+            <view class="listitem" wx:if="{{data.basics_2}}" hidden="{{showtype!='basics_2'}}">
+                <view class="items"  wx:for="{{data.basics_2}}"  style="{{item.style}}">{{item.title}}:<text>{{item.data}}</text></view>
+            </view>
+            <view class="listitem" wx:if="{{data.video}}" hidden="{{showtype!='video'}}">
+                <video src="{{data.video}}" style="width:750rpx;"></video>
+            </view>            
+            <view class="type-container" wx:for="{{data.thumbs}}" style="panding-left:5rpx;" hidden="{{showtype!=('thumbs_'+index)}}">
+                <scroll-view class="type-navbar" scrollX="true" style="width: 100%">
+                    <view class="type-box" wx:for="{{item.list}}" wx:for-item="it"  wx:for-index="idx">
+                        <view bindtap="showimg" class="type-navbar-item " data-list="{{item.list}}" data-idx="{{it}}">
+                            <image src="{{it}}"></image>
+                        </view>
+                    </view>
+                </scroll-view>
+                <view  style="padding-bottom:120rpx; margin-top:20rpx;"></view>
+            </view>
+            <view class="intro"  wx:if="{{data.content}}" hidden="{{showtype!='content'}}">
+                <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+            </view>
+            <view  style="padding-bottom:120rpx; margin-top:20rpx;"></view>
+    </view>
+</view>
+<view class="weixinmao-float"  wx:if="{{data.tel}}">
+    <view class="weixinmao-foot">
+        <view class="footer" hidden="1"></view>
+        <button open-type="contact" class="footer" show-message-card="true" send-message-path="{{_url}}" style="background-color: #f0f0f0;margin-top: 0;width:60%;border-radius:unset;display: block;line-height: 100rpx;font-size: .85rem;">
+            <text class="iconfont fa fa-comments-o"> </text> 联系客服
+        </button>
+        <view class="footer" hidden="1"></view>
+        <view class="footer"  bindtap="doCall" data-tel="{{data.tel}}">立即联系</view>
+    </view>
+</view>
+<view class="u-tap-btn">
+    <button class="u-go-home" open-type="share">
+        <text class="iconfont fa fa-share-alt"/> 分享
+    </button>
+    <button class="u-go-home" bindtap="toUrl"data-url="tab:../index/index">
+       <text class="iconfont fa fa-home" /> 首页
+    </button>
+</view>
+
+<include src="../index/css.wxml" />

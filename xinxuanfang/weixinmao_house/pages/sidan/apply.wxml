@@ -1,0 +1,46 @@
+<form report-submit bindsubmit="savepubinfo">
+    <view class="container">
+        <view class="main">
+            <view class="title">
+          基本信息
+        </view>
+            <view class="list">
+                <view class="item">
+                    <view class="name">公司全称</view>
+                    <view class="selectitem">
+                        <input name="cname" placeholder="请输入公司全称" type="text" value="{{sq.cname}}"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">姓  名</view>
+                    <view class="selectitem">
+                        <input name="name" placeholder="请输入姓名" type="text"  value="{{sq.name}}"></input>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">联系方式</view>
+                    <view class="selectitem">
+                        <input name="tel" placeholder="请输入联系方式" type="text"  value="{{sq.tel}}"></input>
+                    </view>
+                </view>                
+            </view>
+        </view>
+        <view class="main">
+            <view class="title">
+           类型
+           </view>
+            <view class="checklist">
+                <radio-group name='type'>
+                    <view class="checkitem" wx:for="{{types}}">
+                        <radio checked="{{sq.type==item}}" value="{{item}}" />{{item}}</view>                  
+                </radio-group>
+            </view>
+        </view>
+    </view>
+    <view class="weixinmao-float">
+        <view class="weixinmao-foot">
+            <button class="footer" formType="submit" style="background:{{intro.maincolor}}">{{sq?'修改':'立即'}}申请</button>
+        </view>
+    </view>
+</form>
+<include src="../index/css1.wxml" />

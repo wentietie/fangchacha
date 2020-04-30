@@ -1,0 +1,55 @@
+<template name="tjlist">
+    <view class="news" wx:if="{{d.title||d.url}}">
+        <view class="newstitle">
+            <view hidden="{{!d.title}}"></view>
+            <view wx:if="{{d.title}}">{{d.title}}</view>
+            <view bindtap="toInnerUrl" wx:if="{{d.url}}" data-url="{{d.url}}"
+             style="position: absolute;right: 20rpx;">更多>></view>
+        </view>
+    </view>
+    <view class="type-container_agent" wx:if="{{d.list.length>0}}">
+        <view class="type-navbar_agent" style="width: 100%">
+            <view bindtap="toInnerUrl" data-url="../newhousedetail/index?id={{item.id}}" class="type-box_tjlist" wx:for="{{d.list}}">
+              <image src="{{item.thumb}}" />
+              <view class="txt">
+                <view class="short">
+                <text class="fa fa-eye"/> {{item.clickstr}}
+                </view>
+                <view>{{item.housename}}</view>
+                <view class="special">
+                  <text wx:if="{{item.areaname}}">{{item.areaname}}</text>
+                </view>
+              </view>
+              </view>
+          <view class="type-box_tjlist" wx:if="{{d.list.length<2}}"/>
+          <view class="type-box_tjlist" wx:if="{{d.list.length<3}}"/>
+        </view>
+    </view>
+</template>
+<template name="platlist">
+
+    <view class="news" wx:if="{{d.title||d.url}}">
+        <view class="newstitle">
+            <view hidden="{{!d.title}}"></view>
+            <view wx:if="{{d.title}}">{{d.title}}</view>
+            <view bindtap="toUrl" wx:if="{{d.url}}" data-url="{{d.url}}"
+             style="position: absolute;right: 20rpx;">更多>></view>
+        </view>
+    </view>
+      <view class="weui-flex plat-box" wx:if="{{d.list.length>0}}">
+          <view class="weui-flex__item" wx:for="{{d.list}}" style="overflow:hidden;">
+            <view class="plat-item" bindtap="toUrl" data-url="../newhousedetail/gwd?id={{item.id}}">            
+               <image class="avatar" src="{{item.avatar||'../../resource/images/user_img.png'}}" />
+               <view class="name">{{item.name||item.platform}}</view>
+               <view class="desc" wx:if="{{!item._list||item._list.length<=0}}">{{item.housename}}</view>
+               <view class="desc" wx:for="{{item._list}}">{{item}}</view>
+               <view class="desc" style="color:red" wx:if="{{showyj}}" catchtap="{{isyjshow?'':'toAgent'}}">佣金:{{isyjshow?item.money:intro._yjmsg}}</view>
+               <button class="btn" catch:tap="toUrl" data-url="{{item.url}}" wx:if="{{item.url&&!showyj&&isyjshow}}">
+                  <text class="fa fa-commenting" style="transform: rotateY(180deg)" /> 咨询
+               </button>
+            </view>
+          </view>
+          <view class="weui-flex__item" wx:if="{{d.list.length<2}}"/>
+          <view class="weui-flex__item" wx:if="{{d.list.length<3}}"/>
+      </view>
+</template>

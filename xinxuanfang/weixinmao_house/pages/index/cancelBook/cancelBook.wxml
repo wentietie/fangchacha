@@ -1,0 +1,17 @@
+<!--weixinmao_house/pages/index/cancelBook/cancelBook.wxml-->
+<view class="holePage">
+  <view class="topStatus">
+    <view class="statusDis">
+      <image src="../../../resource/images/cancelSuccess.png"></image>
+      <view>
+        已取消预约
+      </view>
+    </view>
+  </view>
+  <view class="reBook">
+    重新预约
+  </view>
+  <view class="reBook goBack">
+    返回
+  </view>
+</view>

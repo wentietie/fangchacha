@@ -1,0 +1,46 @@
+.btn-jion{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0px 4rpx 8rpx rgba(0,0,0,0.3);
+  background-color: #fff;
+  box-sizing: content-box;
+}
+.btn-jion button{
+  border: none;
+  margin:30rpx;
+  color: #fff;
+  font-size: small;
+  line-height: 3;
+  margin-left: 0;
+}
+.btn-jion button:first-child{
+  margin-left: 30rpx;
+}
+.btn-jion button:nth-child(odd){
+  background-color:#1aad19; 
+}
+.btn-jion button:nth-child(even){
+  background-color:#3274e5; 
+}
+.btn-jion button::after{
+  border: none;
+}
+.p-btns{
+  margin:50rpx 20rpx 20rpx;
+}
+.p-btns .p-btn{
+  background-color: #e7e7e787;
+  margin-right: 100rpx;
+  text-align: center;
+  padding: 20rpx;
+  font-size: .7em;
+}
+.p-btns .p-btn:last-child{
+  margin-right: 0;
+}
+.p-btns .p-btn .fa{
+  font-size: x-large;
+  color: #297CDA;
+}

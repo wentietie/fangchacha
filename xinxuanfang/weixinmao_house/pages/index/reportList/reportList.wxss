@@ -1,0 +1,14 @@
+/* weixinmao_house/pages/index/reportList/reportList.wxss */
+.holePage{
+  width: 690rpx;
+  padding: 30rpx;
+}
+.eachReport{
+  width: 100%;
+  height: 50px;
+  border-bottom: 1rpx solid #dddddd;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,87 @@
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<view class="container">
+    <view class="swiper-container">
+        <swiper autoplay="{{autoplay}}" circular="{{circular}}" class="swiper_box" duration="{{duration}}" interval="{{interval}}" style="height:{{imgheights[current]}}rpx;" indicator-dots="true">
+            <swiper-item wx:for="{{data.thumb_url}}" bindtap="showimg" data-list="{{data.thumb_url}}" data-idx="{{item}}">
+                <image bindload="imageLoad" class="slide-image" data-id="" src="{{item}}" style="height:{{imgheights[current]}}rpx;width:{{imgwidth}}rpx;"></image>
+            </swiper-item>
+        </swiper>
+    </view>       
+      <include src="title"/>       
+        <view class="contentlist">
+           <view class="weui-flex btn-icon">
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="../newhouselis/map">
+                 <image src="../../resource/icon/02.png"/>
+                 <view>地图找房</view>
+              </view>
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="index?id={{data.id}}&_page=commentlist">
+                 <image src="../../resource/icon/04.png"/>
+                 <view>房源评论</view>
+              </view>
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="index?id={{data.id}}&_page=detail">
+                 <image src="../../resource/icon/03.png"/>
+                 <view>房源详情</view>
+              </view>
+              <view class="weui-flex__item btn-icon-item" bindtap="toUrl" data-url="index?id={{data.id}}&_page=imgs">
+                 <image src="../../resource/icon/01.png"/>
+                 <view>房源图片</view>
+              </view>
+           </view>
+        </view> 
+    <block wx:if="{{data.tel}}">
+        <view class="agentinfo">
+            <view class="left">
+                <view class="headpic">
+                    <image src="{{data.avatar?data.avatar:(intro.avatar?intro.avatar:data.thumb)}}"></image>
+                </view>
+                <view class="username">
+                    <view>{{data.name}} </view>
+                    <view style="color:red" wx:if="{{isyjshow}}">佣金:{{data.fxmoney}}</view>
+                    <view style="color:red" bindtap="toMessage" wx:else>佣金:{{intro._yjmsg}}</view>
+                    <view>{{data.tel}}</view>
+                </view>
+            </view>
+            <view class="right" style="margin-top: 20rpx;">
+                <view bindtap="doCall" class="contact" data-tel="{{data.tel}}">
+                    <view>
+                        <text class="fa fa-phone fa-lg"></text>
+                    </view>
+                    <view>拨打电话</view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view class="contentlist line" wx:if="{{data.speciallist.length}}">
+        <view class="title">
+            <view></view>
+            <view>房源配套</view>
+        </view>
+        <view class="listitem">
+            <view class="special">
+                <text wx:for="{{data.speciallist}}">{{item}}</text>
+            </view>
+        </view>
+    </view>        
+    <view class="contentlist">            
+        <view class="news">
+          <view class="newstitle">           
+              <view></view>
+              <view>基本参数</view>
+          </view>
+        </view> 
+        <view class="listitem">
+            <view class="items" wx:for="{{data.basics_2}}"  style="{{item.style}}" wx:if="{{item.data&&item.data!='/'}}">{{item.title}}:<text>{{item.data}}</text></view>
+        </view>
+    </view>
+    <include src="../sidan/commentlist"/> 
+</view>
+<view class="weixinmao-float"  wx:if="{{data.tel}}">
+    <view class="weixinmao-foot">
+        <view class="footer" hidden="1"></view>
+        <button open-type="contact" class="footer" show-message-card="true" send-message-path="{{_url}}" style="background-color: #f0f0f0;margin-top: 0;width:60%;border-radius:unset;display: block;line-height: 100rpx;font-size: .85rem;">
+            <text class="iconfont fa fa-comments-o"> </text> 联系客服
+        </button>
+        <view class="footer" hidden="1"></view>
+        <view class="footer"  bindtap="doCall" data-tel="{{data.tel}}">立即联系</view>
+    </view>
+</view>

@@ -1,0 +1,25 @@
+<view class="main">
+        <view class="title">
+            <view>
+                <text>{{data.source?'【'+data.source+'】' :''}} </text>{{data.title}}</view>
+            <view class="price" wx:if="{{data.money}}">
+                <view>{{data.money}}元{{data.letway!=2?'/月':''}}</view>
+            </view>
+        </view>
+            <view class="address" wx:if="{{data.basics_1}}">
+                <view wx:for="{{data.basics_1}}"  style="{{item.style}}">
+                 <block wx:if="{{item.key=='address'}}">
+                     <view bindtap="goMap">
+                        <text class="fa fa-map-marker fa-lg"></text>
+                        {{item.title}}:{{item.data}}
+                     </view>
+                   </block>
+                   <block wx:else>
+                     {{item.title}}:{{item.data}}
+                   </block>
+                </view>
+            </view>
+        <view class="special">
+            <text wx:for="{{data.houselabel}}" wx:if="{{item}}">{{item}}</text>
+        </view>
+    </view>

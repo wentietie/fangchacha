@@ -1,0 +1,182 @@
+<import src="templates/tjlist.wxml"></import>
+<view class="weixinmao-msg-usertel-showmsg" hidden="{{indeximg}}">
+    <view class="weixinmao-content-usertel-showmsg">
+        <image src="{{intro.indexadv}}"></image>
+        <view bindtap="closeIndeximg" class="sum">
+            <image src="../../resource/images/close.png"></image>
+        </view>
+    </view>
+</view>
+<view class="bigWrap">
+    <view class="container" hidden="{{isshow}}">
+        <view class="header" style="background:{{intro.maincolor}}">
+            <navigator hoverClass="none" url="../city/index?id=7">
+                <view class="city">
+                    <text class="fa fa-map-marker  fa-lg"></text> {{city}}
+    </view>
+            </navigator>
+            <view bindtap="toNewHouse" class="search">
+                <icon size="14" type="search"></icon>
+                <view>请输入楼盘、小区、地名等相关信息</view>
+            </view>
+        </view>
+        <view class="swiper-container">
+            <swiper wx:if="{{banners.banner.length>0}}" autoplay="{{autoplay}}" indicator-dots="true" catchtap="onSwiperTap" class="swiper_box" duration="{{duration}}" interval="{{interval}}">
+                <block wx:for="{{banners.banner}}">
+                    <swiper-item  bindtap="{{item.bind}}" data-url="{{item.url}}">
+                        <image class="slide-image"  src="{{item.thumb}}"/>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <view class="navlist">
+            <block wx:if="{{navlist!=''}}">
+                <view bindtap="{{item.link}}" class="item" data-url="{{item.innerurl}}" style="{{navlist[0].style||''}}" wx:for="{{navlist}}">
+                    <image src="{{item.thumb}}" />
+                    <view>{{item.advname}}</view>
+                </view>
+            </block>
+            <block wx:else>
+                <view bindtap="toNewHouse" class="item">
+                    <image src="../../resource/images/t1.png"></image>
+                    <view>新盘分销</view>
+                </view>
+                <view bindtap="toSwitchtab" data-id="../lethouselist/index" class="item">
+                    <image src="../../resource/images/t3.png"></image>
+                    <view>租售分销</view>
+                </view>
+                <view bindtap="toSwitchtab" data-id="../newhouselistdz/index" class="item">
+                    <image src="../../resource/images/t2.png"></image>
+                    <view>大宗物业</view>
+                </view>
+                <view bindtap="tosidan" class="item">
+                    <image src="../../resource/images/t4.png"></image>
+                    <view>私单名单</view>
+                </view>
+                <view bindtap="toNagivate" class="item" data-id="../cuiyong/index">
+                    <image src="../../resource/images/t5.png"></image>
+                    <view>追佣联盟</view>
+                </view>                
+                <view bindtap="toNewHouse" data-tab='tuijian' class="item">
+                    <image src="../../resource/images/u1.png"></image>
+                    <view>推荐房源</view>
+                </view>
+                <view bindtap="toNewHouse" data-tab='new' class="item">
+                    <image src="../../resource/images/t1.png"></image>
+                    <view>最新上架</view>
+                </view>
+                <view bindtap="goPub" class="item">
+                    <image src="../../resource/images/t8.png"></image>
+                    <view>发布信息</view>
+                </view>
+            </block>
+        </view>
+        <view class="near-box" wx:if="{{neardata.r}}">
+          <view class="near-body tb">
+             <view class="tb-tr" >
+                <view class="tb-td img">
+                <image mode='widthFix' class="img" src="../../resource/images/coord.png" bindtap="toUrl" data-url="../newhouselist/map?isnear=1&latlng={{neardata.latlng}}"/>
+                </view>
+                <view class="tb-td" style="padding-left:10rpx;">
+                 <view  bindtap="toUrl" data-url="../newhouselist/map?isnear=1&latlng={{neardata.latlng}}">
+                   <view class="near-title">{{neardata.r.formatted_addresses.recommend}}</view>
+                   <view class="near-addr">{{neardata.r.address}}</view>
+                   <view class="near-addr" style="{{neardata.tipstyle}}" wx:if="{{neardata.tips}}">{{neardata.tips}}</view>
+                   </view>
+                   <view class="near-list" wx:for="{{neardata.list}}" bindtap="toUrl" data-url="../newhouselist/map?isnear=1&fromtype={{item.title}}&latlng={{neardata.latlng}}">
+                  {{item.title}}({{item.count}})
+              </view>
+                </view>
+                </view>
+          </view>
+        </view>       
+        <template is="tjlist" data="{{d:flist}}" wx:if="{{flist.list.length>0}}"/>
+        
+        <view class="swiper-container">
+            <swiper wx:if="{{banners.adv.length>0}}" autoplay="{{autoplay}}"  class="swiper_box" duration="{{duration}}" interval="{{interval}}" style="height:150rpx;">
+                <block wx:for="{{banners.adv}}">
+                    <swiper-item  bindtap="{{item.bind}}" data-url="{{item.url}}">
+                        <image class="slide-image"  src="{{item.thumb}}"/>
+                    </swiper-item>
+                </block>
+            </swiper>
+        </view>
+        <template is="tjlist" data="{{d:tjlist}}" wx:if="{{tjlist.list.length>0}}"/>
+        <template is="platlist" data="{{d:gwlist,isyjshow:isyjshow}}" wx:if="{{gwlist.list.length>0}}"/>
+        <template is="platlist" data="{{d:salelist,isyjshow:isyjshow}}" wx:if="{{salelist.list.length>0}}"/>
+            <view class="news">
+                <view class="newstitle" bindtap="toNagivate" data-id="../article/index">
+                    <view style="background:{{intro.maincolor}}"></view>
+                    <view style="width:auto !important">发朋友圈必备</view>
+                    <view style="position: absolute;right: 20rpx;">更多>></view>
+                </view>
+                <block wx:if="{{newhouselist}}">
+                    <view class="newslist" wx:for="{{newhouselist}}" wx:key="index">
+                        <view bindtap="toNewsDetail" class="pic" data-id="{{item.id}}">
+                            <image src="{{item.thumb}}"></image>                            
+                        </view>
+                        <view bindtap="toNewsDetail" class="title" data-id="{{item.id}}">
+                            <view class="address iaddress" style="height:180rpx;">
+                                <view>{{item.title}}</view>
+                                <view >{{item.des}}</view>                            
+                                <view class="money"> {{item.createtime}}</view>
+                            </view>
+                        </view>
+                    </view>
+                </block>
+            </view>
+    </view>
+</view>
+<view class="u-tap-btn">
+    <button class="u-go-home" openType="contact">
+        <text class="iconfont fa fa-comments-o"/>客服
+    </button>
+</view>
+<view class="u-tap-btn" style="bottom:100rpx;right:0" catchtap="goReport">
+    <view style="overflow:hidden;font-size:28rpx;line-height:30rpx;background-color:rgba(255,255,255,0.8);padding:5rpx;padding-left:10rpx;  border-top-left-radius: 30rpx;  border-bottom-left-radius: 30rpx;box-shadow: 0 0 10rpx #666666;">
+      <image style="float:left;width:26rpx;height:26rpx" src="../../resource/images/baobei.png"></image>
+      <text style="float:left;margin-left:10rpx">报备</text>
+    </view>
+</view>
+<include src="css.wxml" />
+<view class="weixinmao-msg-usertel" hidden="{{isphone}}">
+    <view class="weixinmao-content-usertel">
+        <view class="usertel-title">
+          您还没有绑定手机号呢
+        </view>
+        <view class="usertel-content">
+          点击‘获取’按钮，期待与您愉快的沟通~
+        </view>
+        <view class="usertel-button">
+            <button bindtap="cancelPhone">取消</button>
+            <button bindgetphonenumber="getPhoneNumber" openType="getPhoneNumber">去获取</button>
+        </view>
+    </view>
+</view>
+
+<view class="weixinmao-msg" hidden="{{showmsg}}">
+    <view class="weixinmao-content">
+        <view class="title" style="background:{{intro.maincolor}}">
+            <view></view>
+            <view>发布</view>
+            <view bindtap="closemsg">关闭</view>
+        </view>
+        <view class="content">
+            <view bindtap="toNagivate" class="item" data-id="../newhouselist/pub">
+                   <view> 新房发布</view>
+                </view>
+                <view bindtap="toNagivate" class="item"  data-id="../newhouselist/pub?pubtype=dazong">
+                    <view>大宗物业发布</view>
+                </view>
+                <view bindtap="PubLethouse" class="item">
+                    <view>租售发布</view>
+                </view>
+                <view bindtap="toNagivate" class="item" data-id="../cuiyong/pub">
+                    <view>追佣发布</view>
+                </view>
+                <view bindtap="toNagivate" class="item" data-id="../sidan/pub">
+                    <view>私单人员发布</view>
+                </view>
+        </view>
+    </view>
+</view>

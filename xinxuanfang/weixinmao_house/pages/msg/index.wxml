@@ -1,0 +1,37 @@
+<view class="container">        
+  <view class="contentlist" style="margin-top:0;">            
+      <scroll-view scroll-x="true" class="title">
+          <view></view>
+          <view bindtap="bindshowtype" class="{{showtype==item.key||(showtype=='tap_0'&&index==0)?'active':''}}" wx:for="{{taps}}" data-type="{{item.key}}">{{item.title}}<text class="tips" wx:if="{{item.tips}}"/></view>
+      </scroll-view>
+  </view>
+</view>
+<view class="page">
+  <view class="page__pd">     
+        <view class="weui-panel">
+            <view class="weui-panel__bd">
+            <view class="weui-loadmore" wx:if="{{list.length<=0}}">
+                <view class="weui-loadmore weui-loadmore_line">
+                    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">暂无数据</view>
+                </view>
+            </view>  
+                <view class="weui-media-box weui-media-box_text {{item.isread?'':'nread'}}" wx:for="{{list}}" bindtap="toUrl" data-idx="{{index}}" data-url="{{item.url}}">
+                    <view class="weui-media-box__title weui-media-box__title_in-text f-7"><text class="tips" wx:if="{{!item.isread}}">[未读]</text>{{item.title}}</view>
+                    <view class="weui-media-box__desc f-7 {{item.nclamp?'nclamp':''}}">{{item.desc}}</view>
+                    <view class="weui-media-box__info f-7" catchtap="changeclamp" data-idx="{{index}}">
+                    <view class="weui-media-box__info__meta">{{item.time}}</view>
+                        <view class="weui-media-box__info__meta" style="float:right;">
+                        <block wx:if="{{!item.nclamp}}">
+                        展开<text class="fa fa-angle-double-down" />
+                        </block>
+                        <block wx:else>
+                        收起<text class="fa fa-angle-double-up" />
+                        </block>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+  
+  </view>
+</view>

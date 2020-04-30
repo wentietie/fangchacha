@@ -1,0 +1,81 @@
+<form reportSubmit bindsubmit="savepubinfo">
+    <view class="container">
+        <view class="main">
+            <view class="list">
+                <view class="item">
+                    <view class="name">纠错类型</view>
+                    <picker  class="selectitem" bindchange="bindPickerChange" data-data="{{catelist}}" data-item="farea" range="{{catelist}}" range-key="title">
+                      <view style="width:560rpx;">{{farea.title?farea.title:'请选择纠错类型'}}</view>
+                      <input type="text" name="cate" hidden="true" value="{{farea.key}}" />
+                      <image src="../../resource/images/arrow-right.png" style="float: right;margin-top: -35rpx;" />
+                    </picker>
+                </view>
+                <view class="item">
+                    <view class="name">姓名</view>
+                    <view class="selectitem">                    
+                      <input name="name" placeholder="请输入姓名" type="text"/>
+                    </view>
+                </view>
+                <view class="item">
+                    <view class="name">联系方式</view>
+                    <view class="selectitem">
+                      <input name="tel" placeholder="请输入联系方式" type="text"/>
+                    </view>
+                </view>
+            
+              <view class="title" wx:if="{{plat.length}}">类型</view>
+              <view class="checklist" wx:if="{{plat.length}}">
+                  <radio-group>
+                          <radio class="checkitem" wx:for="{{plat}}" checked="{{index==0||selectHouse.type==item||selectplat==item||selectplat==item.key}}"  bindtap="setPlat" data-value="{{item.key||item}}" >
+                      {{item.title||item}}                
+                      </radio>
+                  </radio-group>
+              </view>
+                <view class="item">
+                    <view class="name">选择楼盘</view>
+                    <view class="selectitem" bindtap="gethouse">
+                        <input  placeholder="请选择楼盘"  value="{{selectHouse.housename||''}}" />
+                        <input name="houseid" hidden="true" value="{{selectHouse.id||''}}" />
+                    </view>
+                </view>                
+                <view class="item" wx:for="{{f_list}}">
+                    <view class="name">{{item.title}}</view>
+                    <view class="selectitem">
+                      <input name="f][{{item.key}}" placeholder="{{item.msg||('请输入'+item.title)}}" type="text"/>
+                    </view>
+                </view>
+                <block  wx:if="{{farea.imgs>0}}">
+                <view class="title">图片上传</view>
+                <view class="item">
+                  <view class="imglist">
+                      <view class="imgitem" wx:for="{{upimgs}}">
+                          <image bindtap="bindUpload" data-idx="{{index}}" src="{{item.p?item.p:'../../resource/images/pub.png'}}" />
+                          <view bindtap="bindDelete" class="sum" data-idx="{{index}}" hidden="{{!item.p}}">
+                              <text>×</text>
+                          </view>
+                      </view>
+                      <view class="imgitem" wx:if="{{upimgs.length<farea.imgs}}">
+                          <image bindtap="bindUploads" data-idx="{{farea.imgs}}" src="{{'../../resource/images/pub.png'}}" />
+                      </view>
+                      <view class="imgitem" wx:if="{{upimgs.length%3==1}}"/>
+                  </view>                  
+                      <checkbox-group name='imgs' hidden="1" >
+                              <checkbox value="{{item.s}}" checked="true" wx:if="{{item.s}}"  wx:for="{{upimgs}}"/>                 
+                      </checkbox-group>
+                </view>
+                </block>
+              <view class="title">纠正信息</view>
+              <view class="checklist">
+                  <textarea placeholder="请输入需要修改的信息" name="desc" style="height:200rpx" hidden="{{!isuser}}"/>
+              </view>
+            </view>
+        </view>
+    </view>
+    <view class="weixinmao-float">
+        <view class="weixinmao-foot">
+            <button class="footer" formType="submit" style="background:{{intro.maincolor}}">立即提交</button>
+        </view>
+    </view>
+</form>
+
+<include src="../index/css1.wxml" />

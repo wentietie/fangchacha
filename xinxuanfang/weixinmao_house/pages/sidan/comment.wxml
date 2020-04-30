@@ -1,0 +1,22 @@
+<form reportSubmit bindsubmit="bindSubmit">
+    <view class="container">
+        <view class="comment1-description">
+            <view class="star-pos" style="display:flex;flex-direction:row;">
+                <view bindtap="setstars" data-i="{{item}}" wx:for="{{[1,2,3,4,5]}}" class="stars  {{flag>=item?'on':''}}"/>
+                <input hidden="true" name="score" />
+            </view>
+        </view>
+        <view class="weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea focus bindinput="bindTextAreaChange" class="weui-textarea" maxlength="{{noteMaxLen}}" name="content" placeholder="我要评价..." style="height: 8em" value="{{info}}"></textarea>
+                    <view class="weui-textarea-counter">{{noteNowLen}}/{{noteMaxLen}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="btnSf">
+            <button formType="submit">发布</button>
+        </view>
+    </view>
+</form>
+<include src="../index/css1"/>
