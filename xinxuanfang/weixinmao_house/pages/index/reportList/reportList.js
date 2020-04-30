@@ -1,4 +1,5 @@
 // weixinmao_house/pages/index/reportList/reportList.js
+var  f = getApp()
 Page({
 
   /**

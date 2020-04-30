@@ -17,4 +17,35 @@
       取消预约
     </view>
   </view>
+  <view class="bottomBtnList">
+    <view class="eachLeft">
+        <image src="../../../resource/images/remark.png"></image>
+        <view>评论</view>
+      </view>
+      <view class="eachLeft" catchtap="addPayImg">
+        <image src="../../../resource/images/baobei.png"></image>
+        <view>录认购单</view>
+      </view>
+      <view class="eachLeft" catchtap="addOverImg">
+        <image src="../../../resource/images/ludaikan.png"></image>
+        <view>录带看单</view>
+      </view>
+  </view>
+  <view class="addImg" wx:if="{{imgList}}">
+    <view class='addBtn' wx:if="{{payDis}}" catchtap="addPay">添加图片</view>
+    <view class='addBtn' wx:if="{{over}}" catchtap="addOver">添加图片</view>
+    <view class="imgList" wx:if="{{payDis}}">
+      <view wx:for="{{payList}}" wx:key='index'>
+        <image src="{{item}}"></image>
+      </view>
+    </view>
+    <view class="imgList" wx:if="{{over}}">
+      <view wx:for="{{overList}}" wx:key='index'>
+        <image src="{{item}}"></image>
+      </view>
+    </view>
+    <view class="comfirmBtn" catchtap="closeAdd">
+      确定
+    </view>
+  </view>
 </view>

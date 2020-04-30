@@ -34,10 +34,10 @@ Page((e = {
   },
   goReport() {
     wx.navigateTo({
-      url: "/weixinmao_house/pages/jion/enterJoin",
+      // url: "/weixinmao_house/pages/jion/enterJoin",
       // url: "/weixinmao_house/pages/index/report/report",
       // url: "/weixinmao_house/pages/jion/jjCompanyJoin/jjCompanyJoin"
-      // url: "/weixinmao_house/pages/index/reportList/reportList",
+      url: "/weixinmao_house/pages/index/reportList/reportList",
     })
   },
   toUrl:app.toUrl,
