@@ -5,7 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
+    
+  },
 
+  getDetail(id){
+    var that = this
+    f.util.request({
+      url: 'entry/wxapp/ReserveDetail',
+      data: {
+        id: id
+      },
+      success(res) {
+        that.setData({
+          depList: res.data.data.company
+        })
+      }
+    })
   },
 
   /**
@@ -19,7 +34,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getDetail(options.id)
   },
 
   /**

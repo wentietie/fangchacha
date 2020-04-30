@@ -9,12 +9,31 @@ Page({
       '1',
       '1',
       '1'
-    ]
+    ],
+    pageIndex:0,
+    pageSize:'10'
   },
 
-  getDetail(){
+  getDetail(e){
+
     wx.navigateTo({
-      url: '/weixinmao_house/pages/index/reportDetail/reportDetail',
+      url: '/weixinmao_house/pages/index/reportDetail/reportDetail?id=' + e.currentTarget.id,
+    })
+  },
+
+  getList(){
+    var that = this
+    f.util.request({
+      url: 'entry/wxapp/ReserveList',
+      data:{
+        page:this.data.pageIndex,
+        psize: this.data.pageSize
+      },
+      success(res) {
+        that.setData({
+          depList: res.data.data.company
+        })
+      }
     })
   },
 
@@ -22,7 +41,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getList()
   },
 
   /**
