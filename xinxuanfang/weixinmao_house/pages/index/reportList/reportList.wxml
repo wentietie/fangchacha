@@ -2,7 +2,21 @@
 <view class="holePage">
 <!-- data-id="{{item.id}}" -->
   <view class="eachReport" wx:for="{{repostList}}" wx:key="index"  catchtap="getDetail" data-id="{{item.id}}">
-    <text>{{item.agent_name}}</text>
-    <text>{{item.agent_phone}}</text>
+    <view class="topInfo">
+      <text>{{item.uname}}</text>
+      <text>{{item.createtime}}</text>
+    </view>
+    <view class="bottomInfo">
+        <view>
+          报备人：{{item.agent_name}}
+        </view>
+        <view>
+          报备楼盘：{{item.house_id}}
+        </view>
+        <view>
+          备注：{{item.remarks}}
+        </view>
+        
+    </view>
   </view>
 </view>

@@ -1,18 +1,30 @@
 <!--weixinmao_house/pages/index/reportDetail/reportDetail.wxml-->
 <view class="holePage">
   <view class="eachTable">
-    <text>2017-2018</text>
-    <text style="color: #199578">已预约</text>
+    <!-- <text>{{curInfo.reserve_time}}</text> -->
+    <text>当前状态：</text>
+    <text style="color: #199578" wx:if="{{curInfo.status == 0}}">未审核</text>
+    <text style="color: #199578" wx:if="{{curInfo.status == 1}}">已审核</text>
+    <text style="color: #199578" wx:if="{{curInfo.status == 2}}">审核未通过</text>
   </view>
   <view class="eachTable">
-    <text>楼盘：人居越秀紫云府</text>
+    <text>楼盘：{{curInfo.house_id}}</text>
     <image src="../../../resource/images/right.png"></image>
   </view>
   <view class="eachTable">
-    <text>电话：13113113131</text>
+    <text>预约时间：{{curInfo.reserve_time}}</text>
   </view>
   <view class="eachTable">
-    <text>预约经纪人：绿色</text>
+    <text>客户姓名：{{curInfo.uname}}</text>
+  </view>
+  <view class="eachTable">
+    <text>客户联系方式：{{curInfo.uphone}}</text>
+  </view>
+  <view class="eachTable">
+    <text>经纪人电话：{{curInfo.agent_phone}}</text>
+  </view>
+  <view class="eachTable">
+    <text>预约经纪人：{{curInfo.agent_name}}</text>
     <view class="cancelBook">
       取消预约
     </view>
@@ -46,6 +58,9 @@
     </view>
     <view class="comfirmBtn" catchtap="closeAdd">
       确定
+    </view>
+    <view style="right:120rpx;" class="comfirmBtn" catchtap="closeAdd">
+      取消
     </view>
   </view>
 </view>

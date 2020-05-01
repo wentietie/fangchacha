@@ -1,4 +1,4 @@
-var f = getApp()
+var f = getApp() , app = f
 
 Page({
   data: {
@@ -42,10 +42,42 @@ Page({
       deparIndex: e.detail.value
     })
   },
+
+  toUrl: app.toUrl,
   
   subForm(e) {
     var that = this
+    if (this.data.curImg == '../../resource/images/pub.png'){
+      wx.showToast({
+        title: '请上传营业执照',
+        icon: 'none',
+        duration: 1500
+      })
+      return
+    }
     e.detail.value.thumb = this.data.curImg
+    for (let input in e.detail.value) {
+      if(input == 'check'){
+        if (e.detail.value['check'].length == 0) {
+          wx.showToast({
+            title: '请勾选同意入驻规则',
+            icon: 'none',
+            duration: 1500
+          })
+          return
+        }
+      }else{
+        if (e.detail.value[input] == '') {
+          wx.showToast({
+            title: '表单填写不完整',
+            icon: 'none',
+            duration: 1500
+          })
+          return
+        }
+      }
+      
+    }
     f.util.request({
       url: 'entry/wxapp/Company',
       data: e.detail.value,

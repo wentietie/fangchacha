@@ -4,6 +4,12 @@
       <view class="title">
         企业入驻信息
       </view>
+      <checkbox-group name="check" style='font-size: 28rpx;'>
+        <checkbox value="0" />
+        <text bindtap="toUrl" data-url="../about/index?type=jion_{{type=='sale'?'sale':'gw'}}" style="border-bottom: 1px blue solid;color:blue;display:inline-block">
+                请仔细阅读入驻规则，勾选视为同意
+                </text>
+      </checkbox-group>
       <view class="list">
         <view class="item">
           <view class="name">公司名称</view>

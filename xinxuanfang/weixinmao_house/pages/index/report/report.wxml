@@ -31,7 +31,17 @@
         <view class="item">
           <view class="name" style="width:auto;">预计到访时间</view>
           <view class="selectitem">
-            <input name="reserve_time" placeholder="请输入带看时间" type="text" />
+            <!-- <input name="reserve_time" placeholder="请输入带看时间" type="text" /> -->
+            <picker mode="date" value="{{date}}" start="{{startDate}}" bindchange="bindDateChange">
+              <view class="picker">
+                 {{date}}
+              </view>
+            </picker>
+            <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
+              <view class="picker">
+                {{time}}
+              </view>
+            </picker>
           </view>
         </view>
         <view class="item">

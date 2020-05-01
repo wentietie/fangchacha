@@ -10,7 +10,8 @@ Page({
     over:false,
     imgList: false,
     payList: [],
-    overList:[]
+    overList:[],
+    curInfo:[]
   },
 
   getDetail(id){
@@ -21,7 +22,9 @@ Page({
         id: id
       },
       success(res) {
-       
+       that.setData({
+         curInfo: res.data.data
+       })
       }
     })
   },

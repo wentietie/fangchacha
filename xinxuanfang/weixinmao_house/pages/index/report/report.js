@@ -1,5 +1,6 @@
 // weixinmao_house/pages/index/report/report.js
 var f = getApp()
+var util = require('../../../../lib/util.js')
 
 Page({
 
@@ -9,7 +10,9 @@ Page({
   data: {
     depList:[],
     deparIndex:0,
-    
+    date: '请选择日期',
+    time: '请选择时间',
+    startDate:'2020-05-01',
   },
 
   getDepart(){
@@ -25,13 +28,40 @@ Page({
     })
   },
 
+  bindDateChange(e) {
+    this.setData({
+      date: e.detail.value
+    })
+  },
+  bindTimeChange(e){
+    this.setData({
+      time: e.detail.value
+    })
+  },
+
   subForm(e){
     var that = this
+    e.detail.value.house_id = this.data.depList[this.data.deparIndex].id
+    for (let input in e.detail.value){
+      if (e.detail.value[input] == ''){
+        wx.showToast({
+          title: '表单填写不完整',
+          icon: 'none',
+          duration: 1500
+        })
+        return
+      }
+    }
     f.util.request({
       url:'entry/wxapp/Reserve',
       data: e.detail.value,
       success(res){
-        console.log(res.data)
+        console.log(res.data.msg)
+        wx.showToast({
+          title: res.data.data.msg,
+          icon:'none',
+          duration:1500
+        })
       }
     })
   },
@@ -41,6 +71,13 @@ Page({
     this.setData({
       deparIndex: e.detail.value
     })
+  },
+  
+  getCurTime(){
+    var date = util.formatTime(new Date)
+    // var curDate = date.getDate()
+    // var curTime = date.getTime()
+    console.log(date)
   },
 
   /**
@@ -62,7 +99,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getCurTime()
   },
 
   /**

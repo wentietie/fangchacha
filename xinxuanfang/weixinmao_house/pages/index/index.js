@@ -34,8 +34,8 @@ Page((e = {
   },
   goReport() {
     wx.navigateTo({
-      url: "/weixinmao_house/pages/jion/enterJoin", //企业入驻
-      // url: "/weixinmao_house/pages/index/report/report", // 报备
+      // url: "/weixinmao_house/pages/jion/enterJoin", //企业入驻
+      url: "/weixinmao_house/pages/index/report/report", // 报备
       // url: "/weixinmao_house/pages/jion/jjCompanyJoin/jjCompanyJoin" // 经济公司入驻
       // url: "/weixinmao_house/pages/index/reportList/reportList", // 报备列表
     })
