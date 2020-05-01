@@ -22,7 +22,7 @@ Page({
             console.log(e)
             if (e.data.data.path) {
               th.setData({
-                curImg: { p: file, s: e.data.data.path } 
+                curImg: e.data.data.path 
               });
             }
           },
