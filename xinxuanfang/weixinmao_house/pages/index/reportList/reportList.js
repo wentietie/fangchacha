@@ -6,19 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    repostList:[
-      '1',
-      '1',
-      '1'
-    ],
+    repostList:[],
     pageIndex:0,
     pageSize:'10'
   },
 
   getDetail(e){
-
+    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
-      url: '/weixinmao_house/pages/index/reportDetail/reportDetail?id=' + e.currentTarget.id,
+      url: '/weixinmao_house/pages/index/reportDetail/reportDetail?id=' + e.currentTarget.dataset.id,
     })
   },
 
@@ -32,7 +28,7 @@ Page({
       },
       success(res) {
         that.setData({
-          depList: res.data.data.company
+          repostList: res.data.data.list
         })
       }
     })

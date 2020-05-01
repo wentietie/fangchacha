@@ -19,11 +19,15 @@ Page({
         f.doUpload({
           path: file,
           success: function (e) {
+            console.log(e)
             if (e.data.data.path) {
               th.setData({
-                curImg: { p: p, s: e.data.data.path }
+                curImg: { p: file, s: e.data.data.path } 
               });
             }
+          },
+          fail(err){
+            console.log(err)
           }
         });
       },
@@ -47,7 +51,11 @@ Page({
       data: e.detail.value,
       success(res) {
         console.log(res.data)
-        
+        wx.showToast({
+          title: res.data.msg,
+          icon:'none',
+          duration:1500
+        })
       }
     })
   },
