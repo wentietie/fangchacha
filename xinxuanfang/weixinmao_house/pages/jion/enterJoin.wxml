@@ -2,7 +2,7 @@
   <view class="container">
     <view class="main">
       <view class="title">
-        企业入驻信息
+        经纪人申请
       </view>
       <checkbox-group name="check" style='font-size: 28rpx;'>
         <checkbox value="0" />
@@ -23,55 +23,16 @@
             <input name="uname" placeholder="请输入姓名" type="text" />
           </view>
         </view>
-        <!-- <view class="item">
+        <view class="item">
           <view class="name"> 手 机</view>
           <view class="selectitem">
-            <input name="phone" placeholder="请输入手机号码" type="text" />
-          </view>
-        </view> -->
-        <view class="item">
-          <view class="name">微信号</view>
-          <view class="selectitem">
-            <input name="weixin" placeholder="请输入手机号码" type="text" />
+            <input name="tel" placeholder="请输入手机号码" type="text" />
           </view>
         </view>
         <view class="item">
           <view class="name">地址</view>
           <view class="selectitem">
-            <input name="address" placeholder="请输入手机号码" type="text" />
-          </view>
-        </view>
-        <view class="item">
-          <view class="name" style="width:auto;">职位</view>
-          <view class="selectitem">
-            <picker name='position' bindchange="chooseDepar" value="{{deparIndex}}" range="{{depList}}">{{depList[deparIndex]}}</picker>
-          </view>
-        </view>
-        <view class="item">
-          <view class="name" style="width:auto;">主打类型</view>
-          <view class="selectitem">
-            <picker name='type' bindchange="chooseType" value="{{typeIndex}}" range="{{typeList}}">{{typeList[typeIndex]}}</picker>
-          </view>
-        </view>
-
-        <!-- <view class="item">
-          <view class="name" style="width:auto;">主打类型</view>
-          <view class="selectitem">
-            <input name="main_type" placeholder="请输入客户备注" type="text" />
-          </view>
-        </view>
-        <view class="item">
-          <view class="name" style="width:auto;">公司规模</view>
-          <view class="selectitem">
-            <input name="pany_content" placeholder="请输入客户备注" type="text" />
-          </view>
-        </view> -->
-        <view class="item">
-          <view class="name" style="width:auto;">营业执照</view>
-        </view>
-        <view style="width:100%">
-          <view class='addImg'>
-            <image src="{{curImg}}" catchtap="upImg"></image>
+            <input name="address" placeholder="请输入地址" type="text" />
           </view>
         </view>
       </view>

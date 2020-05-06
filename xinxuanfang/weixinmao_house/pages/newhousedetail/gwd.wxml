@@ -1,6 +1,6 @@
 <view class="page">
    <view class="page_bd" wx:if="{{_page!='video'}}">   
-      <view class="plat-list">
+      <view class="plat-list" style="position: relative">
           <view class="body weui-flex">
              <view class="left">
                <image class="avatar" src="{{item.avatar||'../../resource/images/user_img.png'}}" />
@@ -36,6 +36,9 @@
                </view>
              </view>
           </view>
+          <view class="reportBtn" catchtap="goReport">
+    报备
+   </view>
           <view class="bottom weui-flex">
             <view class="weui-flex__item">
                <text class="num">{{item.click>9999?'9999+':item.click}}</text> 浏览量
@@ -68,9 +71,7 @@
       </view>
    </view>
 
-   <view class="reportBtn" class="reportBtn" catchtap="goReport">
-    报备
-   </view>
+   
    
    <view class="page_bd" wx:if="{{_page=='video'}}">               
             <view class="listitem" wx:if="{{item.videos}}">

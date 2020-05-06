@@ -2,7 +2,7 @@
   <view class="container">
     <view class="main">
       <view class="title">
-        经济人报备信息
+        经纪人报备信息
       </view>
       <view class="list">
         <view class="item">

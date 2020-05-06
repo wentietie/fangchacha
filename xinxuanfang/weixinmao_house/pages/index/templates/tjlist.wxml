@@ -47,6 +47,9 @@
                <button class="btn" catch:tap="toUrl" data-url="{{item.url}}" wx:if="{{item.url&&!showyj&&isyjshow}}">
                   <text class="fa fa-commenting" style="transform: rotateY(180deg)" /> 咨询
                </button>
+               <button class="btn" catch:tap="toUrl" data-url="/weixinmao_house/pages/index/report/report" wx:if="{{showyj}}">
+                  <text class="fa fa-commenting" style="transform: rotateY(180deg)" /> 报备
+               </button>
             </view>
           </view>
           <view class="weui-flex__item" wx:if="{{d.list.length<2}}"/>
