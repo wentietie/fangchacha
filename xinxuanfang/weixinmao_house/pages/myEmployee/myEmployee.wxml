@@ -1,0 +1,20 @@
+
+<view class="holePage">
+  <view class="eachDep" wx:for="{{depList}}" wx:key="index" catchtap="getDetail">
+    <view class="name">
+      姓名：123
+    </view>
+    <view class="address">
+      手机号：321
+    </view>
+    <view class="address">
+      报备量：321
+    </view>
+    <view class="address">
+      带看量：321
+    </view>
+    <view class="address">
+      认购量：321
+    </view>
+  </view>
+</view>

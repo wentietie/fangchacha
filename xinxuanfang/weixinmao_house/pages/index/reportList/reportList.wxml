@@ -1,4 +1,24 @@
 <!--weixinmao_house/pages/index/reportList/reportList.wxml-->
+<view class="mineInfo">
+  <view class="myInfo">
+    <text>当前角色： 一晨大帅比-房查查经纪人</text>
+    <text style="color: #999;">5.6 更新</text>
+  </view>
+  <view class="infoDis">
+    <view class="eachDiv">
+      <view>0</view>
+      <view>报备量</view>
+    </view>
+    <view class="eachDiv" style="border-left: 1rpx soild #ddd;border-right: 1rpx soild #ddd">
+      <view>0</view>
+      <view>带看量</view>
+    </view>
+    <view class="eachDiv">
+      <view>0</view>
+      <view>认购量</view>
+    </view>
+  </view>
+</view>
 <view class="holePage">
 <!-- data-id="{{item.id}}" -->
   <view class="eachReport" wx:for="{{repostList}}" wx:key="index"  catchtap="getDetail" data-id="{{item.id}}">

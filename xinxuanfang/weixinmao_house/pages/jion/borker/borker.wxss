@@ -381,35 +381,3 @@
   display: block;
   margin-left: 20rpx
 }
-.bottomTab{
-  width: 100%;
-  line-height: 100rpx;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  font-size: 30rpx;
-  justify-content: space-between;
-}
-.eachTab{
-  min-width: 50%;
-}
-.bottomBorder{
-  width: 50%;
-  height: 10rpx;
-  background-color: #3274e5;
-  transition: 0.3s;
-  text-align: center !important;
-}
-.selColor{
-  color: #3274e5;
-}
-.selPosition{
-  margin-left: 50%;
-}
-.contentDis{
-  position: fixed;
-  left: 0;
-  top: 110rpx;
-  overflow-y: auto;
-  bottom: 0;
-}

@@ -11,6 +11,8 @@
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -22,7 +24,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.9.1",
-	"appid": "wx2b1bba14e99c5b28",
+	"appid": "wx30c6474817cbaa67",
 	"projectname": "%E6%96%B0%E9%80%89%E6%88%BF",
 	"debugOptions": {
 		"hidedInDevtools": []

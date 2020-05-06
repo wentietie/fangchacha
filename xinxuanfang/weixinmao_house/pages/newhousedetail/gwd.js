@@ -80,4 +80,9 @@ json.showvideo=function(e){
   });
 }
 json.toAgent=app.toAgent;
+json.goReport = function() {
+  wx.navigateTo({
+    url: '/weixinmao_house/pages/index/report/report',
+  })
+}
 Page(json);

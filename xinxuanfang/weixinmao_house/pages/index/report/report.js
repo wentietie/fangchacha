@@ -8,11 +8,20 @@ Page({
    * 页面的初始数据
    */
   data: {
+    bannerList:[],
     depList:[],
     deparIndex:0,
     date: '请选择日期',
     time: '请选择时间',
     startDate:'2020-05-01',
+    joinList:[
+      '渠道驻场',
+    ],
+    joinIndex:0,
+    getPeopleList:[
+      '选择驻场人员'
+    ],
+    peopleIndex:0
   },
 
   getDepart(){
@@ -23,6 +32,19 @@ Page({
         console.log(res.data)
         that.setData({
           depList: res.data.data.company
+        })
+      }
+    })
+  },
+
+  getBanner(){
+    var that = this
+    f.util.request({
+      url: 'entry/wxapp/Roll',
+      success(res) {
+        console.log(res.data)
+        that.setData({
+          bannerList: res.data.data
         })
       }
     })
@@ -85,6 +107,7 @@ Page({
    */
   onLoad: function (options) {
     this.getDepart()
+    this.getBanner()
   },
 
 

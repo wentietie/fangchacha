@@ -1,0 +1,11 @@
+<!--weixinmao_house/pages/mydepList/mydepList.wxml-->
+<view class="holePage">
+  <view class="eachDep" wx:for="{{depList}}" wx:key="index">
+    <view class="name">
+      楼盘名称：123
+    </view>
+    <view class="address">
+      楼盘地址：321
+    </view>
+  </view>
+</view>

@@ -67,6 +67,10 @@
         <view class="weui-flex__item" wx:else /> 
       </view>
    </view>
+
+   <view class="reportBtn" class="reportBtn" catchtap="goReport">
+    报备
+   </view>
    
    <view class="page_bd" wx:if="{{_page=='video'}}">               
             <view class="listitem" wx:if="{{item.videos}}">

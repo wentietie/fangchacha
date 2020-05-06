@@ -20,10 +20,29 @@
         <view class="item">
           <view class="name">报备楼盘</view>
           <view class="selectitem">
-            <!-- <input name="wechat" placeholder="请输入报备楼盘" type="text" /> -->
             <picker name='house_id' bindchange="chooseDepar" value="{{deparIndex}}" range="{{depList}}" range-key="housename">
               <view class="picker">
                 {{depList[deparIndex].housename}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="item">
+          <view class="name">选择驻场人员</view>
+          <view class="selectitem">
+            <picker name='join_id' bindchange="choosePeople" value="{{peopleIndex}}" range="{{getPeopleList}}">
+              <view class="picker">
+                {{getPeopleList[peopleIndex]}}
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="item">
+          <view class="name">选择入驻</view>
+          <view class="selectitem">
+            <picker name='join_id' bindchange="chooseJoin" value="{{joinIndex}}" range="{{joinList}}">
+              <view class="picker">
+                {{joinList[joinIndex]}}
               </view>
             </picker>
           </view>
@@ -34,7 +53,7 @@
             <!-- <input name="reserve_time" placeholder="请输入带看时间" type="text" /> -->
             <picker mode="date" value="{{date}}" start="{{startDate}}" bindchange="bindDateChange">
               <view class="picker">
-                 {{date}}
+                {{date}}
               </view>
             </picker>
             <picker mode="time" value="{{time}}" bindchange="bindTimeChange">
@@ -64,6 +83,14 @@
         </view>
       </view>
     </view>
+    <view class="banner">
+    <swiper style="width:100%;height:100%" autoplay duration="5000" circular>
+      <swiper-item style="width:100%;height:100%" wx:for="{{bannerList}}" wx:key="index">
+        <image src="{{item.thumb}}"></image>
+      </swiper-item>
+    </swiper>
   </view>
+  </view>
+  
   <button form-type="submit" class='subBtn'>立即提交</button>
 </form>

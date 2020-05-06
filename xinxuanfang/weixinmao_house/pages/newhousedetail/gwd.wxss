@@ -44,3 +44,15 @@
   font-size: x-large;
   color: #297CDA;
 }
+.reportBtn{
+  width: 130rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background-color: #3274e5;
+  border-radius: 10rpx;
+  color: #fff;
+  position: absolute;
+  top: 335rpx;
+  right: 50rpx;
+  font-size: 30rpx;
+}

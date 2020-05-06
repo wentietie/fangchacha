@@ -69,6 +69,14 @@ Page({
       isuser: true
     });
   },
+
+  onShareAppMessage: function (res) {
+    return {
+      title: '测试',
+      path: '/weixinmao_house/pages/index/report/report?id=123',
+      // imageUrl: '****.png'
+    }
+  },
   onShow:function(){
     var a=this, n = wx.getStorageSync("userInfo"), isuser = false;
     n && n.hasOwnProperty("wxInfo") ? isuser = !0 : isuser = !1;
@@ -161,8 +169,10 @@ Page({
         }, a.detail);
   },
   toUrl: function (a) {
-    console.log(a)
     app.toUrl(a);
+  },
+  inviteEmp(){
+    
   },
   toNagivate: function (a) {
     var e = a.currentTarget.dataset.id;

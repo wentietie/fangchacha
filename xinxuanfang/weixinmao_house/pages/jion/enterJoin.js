@@ -2,16 +2,28 @@ var f = getApp() , app = f
 
 Page({
   data: {
-    depList: [
+    depList_e: [
       '法人',
       '股东',
       '经理'
     ],
-    deparIndex: 0,
-    curImg:'../../resource/images/pub.png'
+    deparIndex_e: 0,
+    typeList_e: [
+      '公寓',
+      '商铺',
+      '二手房'
+    ],
+    typeIndex_e: 0,
+    curImg_e:'../../resource/images/pub.png'
   },
 
-  upImg(){
+  chooseType_e(e){
+    this.setData({
+      typeIndex_e: e.detail.value
+    })
+  },
+
+  upImg_e(){
     var th = this
     wx.chooseImage({
       success: function(res) {
@@ -22,7 +34,7 @@ Page({
             console.log(e)
             if (e.data.data.path) {
               th.setData({
-                curImg: e.data.data.path 
+                curImg_e: e.data.data.path 
               });
             }
           },
@@ -36,18 +48,18 @@ Page({
     })
   },
 
-  chooseDepar(e) {
+  chooseDepar_e(e) {
     console.log(e)
     this.setData({
-      deparIndex: e.detail.value
+      deparIndex_e: e.detail.value
     })
   },
 
   toUrl: app.toUrl,
   
-  subForm(e) {
+  subForm_e(e) {
     var that = this
-    if (this.data.curImg == '../../resource/images/pub.png'){
+    if (this.data.curImg_e == '../../resource/images/pub.png'){
       wx.showToast({
         title: '请上传营业执照',
         icon: 'none',
@@ -55,7 +67,7 @@ Page({
       })
       return
     }
-    e.detail.value.thumb = this.data.curImg
+    e.detail.value.thumb = this.data.curImg_e
     for (let input in e.detail.value) {
       if(input == 'check'){
         if (e.detail.value['check'].length == 0) {

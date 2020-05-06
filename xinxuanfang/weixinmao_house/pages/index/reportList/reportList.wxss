@@ -18,3 +18,27 @@
 .bottomInfo{
   font-size: 34rpx;
 }
+.mineInfo{
+  width: 100%;
+  font-size: 30rpx;
+}
+.myInfo{
+  width: 90%;
+  margin: 0 auto;
+  line-height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.infoDis{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.eachDiv{
+  line-height: 80rpx;
+  text-align: center;
+  color: #999;
+  min-width: 249rpx;
+}

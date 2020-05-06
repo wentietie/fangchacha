@@ -65,8 +65,8 @@
   </view>
   <view class="weui-flex btns" style="width:550rpx;box-sizing: border-box;">
   
-     <button class="weui-flex__item" type="primary" bindtap="toUrl" data-url="gw?type=sale&id={{data.id}}">
-     联系渠道驻场
+     <button class="weui-flex__item" type="primary" bindtap="toUrl" data-url="/weixinmao_house/pages/index/report/report?id={{data.id}}">
+     报备
      </button>  
      <button class="weui-flex__item" bindtap="toUrl" data-url="gw?type=gw&id={{data.id}}">
      联系置业顾问

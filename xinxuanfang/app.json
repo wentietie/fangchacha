@@ -1,7 +1,10 @@
 {
   "pages": [
     
+    
     "weixinmao_house/pages/index/index",
+    "weixinmao_house/pages/myEmployee/myEmployee",
+    "weixinmao_house/pages/mydepList/mydepList",
     "weixinmao_house/pages/index/report/report",
     
 
@@ -55,6 +58,7 @@
     "weixinmao_house/pages/jion/index",
     "weixinmao_house/pages/jion/enterJoin",
     "weixinmao_house/pages/jion/jjCompanyJoin/jjCompanyJoin",
+    "weixinmao_house/pages/jion/borker/borker",
     "weixinmao_house/pages/jion/select",
     "weixinmao_house/pages/jion/list",
     "weixinmao_house/pages/msg/index",

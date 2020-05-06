@@ -1,28 +1,116 @@
-<form bindsubmit="subForm">
+<view class="bottomTab">
+  <view class="eachTab {{curTab == 0?'selColor':''}}" data-i="0" catchtap="chooseTab">
+    经济公司入驻
+  </view>
+  <view class="eachTab {{curTab == 1?'selColor':''}}" data-i="1" catchtap="chooseTab">
+    企业入驻
+  </view>
+</view>
+<view class="bottomBorder {{curTab == 0?'':'selPosition'}}"></view>
+<view class="contentDis">
+  <view class="jjContent" wx:if="{{curTab == 0}}">
+    <form bindsubmit="subForm">
+      <view class="container">
+        <view class="main">
+          <view class="title">
+            经济公司报备信息
+          </view>
+          <checkbox-group name="check" style='font-size: 28rpx;'>
+        <checkbox value="0" />
+        <text bindtap="toUrl" data-url="../about/index?type=jion_{{type=='sale'?'sale':'gw'}}" style="border-bottom: 1px blue solid;color:blue;display:inline-block">
+                请仔细阅读入驻规则，勾选视为同意
+                </text>
+      </checkbox-group>
+          <view class="list">
+            <view class="item">
+              <view class="name">公司名称</view>
+              <view class="selectitem">
+                <input name="pname" placeholder="请输入公司名称" type="text" />
+              </view>
+            </view>
+            <view class="item">
+              <view class="name">姓 名</view>
+              <view class="selectitem">
+                <input name="username" placeholder="请输入姓名" type="text" />
+              </view>
+            </view>
+            <view class="item">
+              <view class="name"> 手 机</view>
+              <view class="selectitem">
+                <input name="phone" placeholder="请输入手机号码" type="text" />
+              </view>
+            </view>
+            <view class="item">
+              <view class="name">微信号</view>
+              <view class="selectitem">
+                <input name="weixin" placeholder="请输入手机号码" type="text" />
+              </view>
+            </view>
+            <view class="item">
+              <view class="name" style="width:auto;">职位</view>
+              <view class="selectitem">
+                <picker name='position' bindchange="chooseDepar" value="{{deparIndex}}" range="{{depList}}">{{depList[deparIndex]}}</picker>
+              </view>
+            </view>
+
+            <view class="item">
+              <view class="name" style="width:auto;">主打区域</view>
+              <view class="selectitem">
+                <input name="main_type" placeholder="请输入客户备注" type="text" />
+              </view>
+            </view>
+            <view class="item">
+              <view class="name" style="width:auto;">公司规模</view>
+              <view class="selectitem">
+                <input name="pany_content" placeholder="请输入客户备注" type="text" />
+              </view>
+            </view>
+            <view class="item">
+              <view class="name" style="width:auto;">营业执照</view>
+            </view>
+            <view style="width:100%">
+              <view class='addImg'>
+                <image src="{{curImg}}" catchtap="addImg"></image>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <button form-type="submit" class='subBtn'>立即提交</button>
+    </form>
+  </view>
+  <view wx:if="{{curTab == 1}}">
+    <form bindsubmit="subForm_e">
   <view class="container">
     <view class="main">
       <view class="title">
-        经济公司报备信息
+        企业入驻信息
       </view>
+      <checkbox-group name="check" style='font-size: 28rpx;'>
+        <checkbox value="0" />
+        <text bindtap="toUrl" data-url="../about/index?type=jion_{{type=='sale'?'sale':'gw'}}" style="border-bottom: 1px blue solid;color:blue;display:inline-block">
+                请仔细阅读入驻规则，勾选视为同意
+                </text>
+      </checkbox-group>
       <view class="list">
-      <view class="item">
+        <view class="item">
           <view class="name">公司名称</view>
           <view class="selectitem">
-            <input name="pname" placeholder="请输入公司名称" type="text" />
+            <input name="ename" placeholder="请输入公司名称" type="text" />
           </view>
         </view>
         <view class="item">
           <view class="name">姓 名</view>
           <view class="selectitem">
-            <input name="username" placeholder="请输入姓名" type="text" />
+            <input name="uname" placeholder="请输入姓名" type="text" />
           </view>
         </view>
-        <view class="item">
+        <!-- <view class="item">
           <view class="name"> 手 机</view>
           <view class="selectitem">
             <input name="phone" placeholder="请输入手机号码" type="text" />
           </view>
-        </view>
+        </view> -->
         <view class="item">
           <view class="name">微信号</view>
           <view class="selectitem">
@@ -30,14 +118,26 @@
           </view>
         </view>
         <view class="item">
-          <view class="name" style="width:auto;">职位</view>
+          <view class="name">地址</view>
           <view class="selectitem">
-            <picker name='position' bindchange="chooseDepar" value="{{deparIndex}}" range="{{depList}}">{{depList[deparIndex]}}</picker>
+            <input name="address" placeholder="请输入手机号码" type="text" />
           </view>
         </view>
-        
         <view class="item">
-          <view class="name" style="width:auto;">主打区域</view>
+          <view class="name" style="width:auto;">职位</view>
+          <view class="selectitem">
+            <picker name='position' bindchange="chooseDepar_e" value="{{deparIndex_e}}" range="{{depList_e}}">{{depList_e[deparIndex_e]}}</picker>
+          </view>
+        </view>
+        <view class="item">
+          <view class="name" style="width:auto;">主打类型</view>
+          <view class="selectitem">
+            <picker name='type' bindchange="chooseType_e" value="{{typeIndex_e}}" range="{{typeList_e}}">{{typeList_e[typeIndex_e]}}</picker>
+          </view>
+        </view>
+
+        <!-- <view class="item">
+          <view class="name" style="width:auto;">主打类型</view>
           <view class="selectitem">
             <input name="main_type" placeholder="请输入客户备注" type="text" />
           </view>
@@ -47,17 +147,19 @@
           <view class="selectitem">
             <input name="pany_content" placeholder="请输入客户备注" type="text" />
           </view>
-        </view>
+        </view> -->
         <view class="item">
           <view class="name" style="width:auto;">营业执照</view>
         </view>
         <view style="width:100%">
           <view class='addImg'>
-          <image src="{{curImg}}" catchtap="addImg"></image>
-        </view>
+            <image src="{{curImg_e}}" catchtap="upImg"></image>
+          </view>
         </view>
       </view>
     </view>
   </view>
   <button form-type="submit" class='subBtn'>立即提交</button>
 </form>
+  </view>
+</view>

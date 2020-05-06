@@ -24,6 +24,13 @@
           <view>{{item.title}}</view>
         </button>
       </view>
+      <view class="item" wx:if="{{item.bind=='inviteEmp'}}">
+        <button open-type="share">
+          <image src="{{item.icon}}" />
+          <text class="tips" wx:if="{{item.tips}}" />
+          <view>{{item.title}}</view>
+        </button>
+      </view>
       <view wx:else bindtap="{{item.bind}}" class="item" data-url="{{item.url}}">
         <button>
           <image src="{{item.icon}}" />
