@@ -2,7 +2,7 @@
   <view class="container">
     <view class="main">
       <view class="title">
-        经纪人申请
+        经纪人入驻
       </view>
       <checkbox-group name="check" style='font-size: 28rpx;'>
         <checkbox value="0" />
@@ -27,6 +27,12 @@
           <view class="name"> 手 机</view>
           <view class="selectitem">
             <input name="tel" placeholder="请输入手机号码" type="text" />
+          </view>
+        </view>
+        <view class="item">
+          <view class="name">银行卡号</view>
+          <view class="selectitem">
+            <input name="tel" placeholder="请输入银行卡号" type="text" />
           </view>
         </view>
         <view class="item">
